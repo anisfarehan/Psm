@@ -1,54 +1,47 @@
-package com.ayerputeh.Model.LoginDAO;
+package com.ayerputeh.Model.GuruDAO;
 
 import com.ayerputeh.GlobalServlet.DBConnectionManager;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
-
 /**
- * Created by Hp on 01-Apr-17.
- * <p>
- * https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
- * <p>
- * STEP 1: Create Value Object.
+ * Created by Hp on 4/3/2017.
  */
-public class LoginDAO extends DBConnectionManager {
+public class GuruDAO extends DBConnectionManager{
     protected transient boolean isNewRecord = true;
-    protected transient String tableName = "login";
+    protected transient String tableName = "guru";
 
     /******************************
      * TABLE COLUMN NAME
      *******************************/
-    private  int id;
-    public String number_ic, password, status;
+    private int id;
+    public String gurunama;
+    public int no_ic, subjek_id,kelas_id;
 
     /******************************
      * DATABASE VARIABLES
      *******************************/
     //list is working as a database
-    private transient List<LoginDAO> logins;
+    private transient List<com.ayerputeh.Model.GuruDAO.GuruDAO> gurus;
     private transient Connection conn = getConnection();
     private transient Statement stmt = null;
     private transient PreparedStatement preparedStmt = null;
     private transient ResultSet rs = null;
 
-    public LoginDAO() {
+    public GuruDAO() {
         this.isNewRecord = true;
     }
 
     /******************************
      * ATTRIBUTES/COLUMN SETTER & GETTER
      *******************************/
-    public void setNRIC(String NRIC) {
-        this.number_ic = NRIC;
+    /*public void setKelasNama(String KelasNama) {
+        this.kelasnama = KelasNama;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setGuruID(int guru_id) {
+        this.guru_id = guru_id;
     }
 
     public int getID() {
@@ -65,7 +58,7 @@ public class LoginDAO extends DBConnectionManager {
 
     public String getStatus() {
         return this.status;
-    }
+    }*/
 
 
     /********************************
@@ -97,10 +90,11 @@ public class LoginDAO extends DBConnectionManager {
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (number_ic, password, status) VALUES (?, ?, ?)");
-            this.preparedStmt.setString(1, this.number_ic);
-            this.preparedStmt.setString(2, this.password);
-            this.preparedStmt.setString(3, this.status);
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (gurunama, no_ic, subjek_id,kelas_id) VALUES (?, ?, ?, ?, ?)");
+            this.preparedStmt.setString(1, this.gurunama);
+            this.preparedStmt.setInt(2, this.no_ic);
+            this.preparedStmt.setInt(3, this.subjek_id);
+            this.preparedStmt.setInt(4, this.kelas_id);
 
             // execute the preparedstatement
             this.preparedStmt.execute();
@@ -113,10 +107,10 @@ public class LoginDAO extends DBConnectionManager {
     }
 
     /*
-    * READ
+    * SELECT
     * */
     //retrive single login from the database
-    public LoginDAO read(int id) {
+    public com.ayerputeh.Model.GuruDAO.GuruDAO read(int id) {
         this.isNewRecord = false;
 
         try {
@@ -127,16 +121,16 @@ public class LoginDAO extends DBConnectionManager {
             ps.setInt(1, id);
             this.rs = ps.executeQuery();
 
-            LoginDAO loginDAO = null;
+            com.ayerputeh.Model.GuruDAO.GuruDAO GuruDAO = null;
             while (rs.next()) {
-                loginDAO = this.processRow(rs);
+                GuruDAO = this.processRow(rs);
             }
 
             this.conn.close();
-//            return this.logins.get(id - 1);
+//            return this.gurus.get(id - 1);
 
             System.out.print("DATA SELECTED FROM " + this.tableName);
-            return loginDAO;
+            return GuruDAO;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }
@@ -151,11 +145,11 @@ public class LoginDAO extends DBConnectionManager {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET number_ic=?, password=?, status=? WHERE id=?");
-            this.preparedStmt.setString(1, this.number_ic);
-            this.preparedStmt.setString(2, this.password);
-            this.preparedStmt.setString(3, this.status);
-            this.preparedStmt.setInt(4, this.id);
+            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET gurunama=?, no_ic=?, subjek_id=?, kelas_id=? WHERE id=?");
+            this.preparedStmt.setString(1, this.gurunama);
+            this.preparedStmt.setInt(2, this.no_ic);
+            this.preparedStmt.setInt(3, this.subjek_id);
+            this.preparedStmt.setInt(4, this.kelas_id);
 
             // execute the preparedstatement
             this.preparedStmt.executeUpdate();
@@ -189,35 +183,44 @@ public class LoginDAO extends DBConnectionManager {
     }
 
     //retrive single login from the database
-    public LoginDAO findByNRIC(String NRIC) {
+    public List<com.ayerputeh.Model.GuruDAO.GuruDAO> findByGuruID(int guru_id) {
         this.isNewRecord = false;
 
         try {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE number_ic=? LIMIT 1");
-            ps.setString(1, NRIC);
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE guru_id=?");
+            ps.setInt(1, id);
             this.rs = ps.executeQuery();
 
-            LoginDAO loginDAO = null;
+            List<com.ayerputeh.Model.GuruDAO.GuruDAO> guruDAOs = new ArrayList<>();
             while (rs.next()) {
-                loginDAO = this.processRow(rs);
+                guruDAOs.add(this.processRow(rs));
             }
 
             this.conn.close();
-//            return this.logins.get(id - 1);
+//            return this.gurus.get(id - 1);
 
             System.out.print("DATA SELECTED FROM " + this.tableName);
-            return loginDAO;
+            return guruDAOs;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }
 
     }
 
-    //retrive list of logins from the database
-    public List<LoginDAO> getAllLogins() {
+    protected com.ayerputeh.Model.GuruDAO.GuruDAO processRow(ResultSet rs) throws SQLException {
+        this.id = rs.getInt("id");
+        this.no_ic = rs.getInt("no_ic");
+        this.subjek_id = rs.getInt("subjek_id");
+        this.kelas_id = rs.getInt("kelas_id");
+        this.gurunama = rs.getString("gurunama");
+        return this;
+    }
+
+    //retrive list of gurus from the database
+    private List<com.ayerputeh.Model.GuruDAO.GuruDAO> getAllGuru() {
         try {
             if (this.conn.isClosed())
                 this.conn = getConnection();
@@ -226,23 +229,17 @@ public class LoginDAO extends DBConnectionManager {
             this.rs = ps.executeQuery();
 
             while (rs.next()) {
-                this.logins.add(this.processRow(rs));
+                this.gurus.add(this.processRow(rs));
             }
 
             this.conn.close();
 
             System.out.print("DATA SELECTED FROM " + this.tableName);
-            return this.logins;
+            return this.gurus;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }
     }
-
-    protected LoginDAO processRow(ResultSet rs) throws SQLException {
-        this.id = rs.getInt("id");
-        this.number_ic = rs.getString("number_ic");
-        this.password = rs.getString("password");
-        this.status = rs.getString("status");
-        return this;
-    }
 }
+
+

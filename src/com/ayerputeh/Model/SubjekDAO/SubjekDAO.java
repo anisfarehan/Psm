@@ -1,4 +1,4 @@
-package com.ayerputeh.Model.LoginDAO;
+package com.ayerputeh.Model.SubjekDAO;
 
 import com.ayerputeh.GlobalServlet.DBConnectionManager;
 
@@ -6,67 +6,63 @@ import java.sql.*;
 import java.util.List;
 
 /**
- * Created by Hp on 01-Apr-17.
- * <p>
- * https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
- * <p>
- * STEP 1: Create Value Object.
+ * Created by Hp on 4/4/2017.
  */
-public class LoginDAO extends DBConnectionManager {
+public class SubjekDAO extends DBConnectionManager  {
     protected transient boolean isNewRecord = true;
-    protected transient String tableName = "login";
+    protected transient String tableName = "subjek";
 
     /******************************
      * TABLE COLUMN NAME
      *******************************/
     private  int id;
-    public String number_ic, password, status;
+    public String subjeknama;
+    public int kelas_id, guru_id;
 
     /******************************
      * DATABASE VARIABLES
      *******************************/
     //list is working as a database
-    private transient List<LoginDAO> logins;
+    private transient List<SubjekDAO> logins;
     private transient Connection conn = getConnection();
     private transient Statement stmt = null;
     private transient PreparedStatement preparedStmt = null;
     private transient ResultSet rs = null;
 
-    public LoginDAO() {
+    public SubjekDAO() {
         this.isNewRecord = true;
     }
 
     /******************************
      * ATTRIBUTES/COLUMN SETTER & GETTER
      *******************************/
-    public void setNRIC(String NRIC) {
-        this.number_ic = NRIC;
+    public void setSubjeknama(String subjeknama) {
+
+        this.subjeknama= subjeknama;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setKelasID(int kelas_id) {
+
+        this.kelas_id = kelas_id;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setGuruID(int guru_id) {
+        this.guru_id = guru_id;
+    }
+    public String getSubjeknama() {
+
+        return this.subjeknama;
     }
 
-    public int getID() {
-        return this.id;
+    public int getKelas_id() {
+
+        return this.kelas_id;
     }
 
-    public String getNRIC() {
-        return this.number_ic;
-    }
+    public int getGuru_id() {
 
-    public String getPassword() {
-        return this.password;
+        return this.guru_id;
     }
-
-    public String getStatus() {
-        return this.status;
-    }
-
 
     /********************************
      *
@@ -97,10 +93,10 @@ public class LoginDAO extends DBConnectionManager {
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (number_ic, password, status) VALUES (?, ?, ?)");
-            this.preparedStmt.setString(1, this.number_ic);
-            this.preparedStmt.setString(2, this.password);
-            this.preparedStmt.setString(3, this.status);
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (subjeknama, kelas_id, guru_id) VALUES (?, ?, ?, ?)");
+            this.preparedStmt.setString(1, this.subjeknama);
+            this.preparedStmt.setInt(2, this.kelas_id);
+            this.preparedStmt.setInt(3, this.guru_id);
 
             // execute the preparedstatement
             this.preparedStmt.execute();
@@ -116,7 +112,7 @@ public class LoginDAO extends DBConnectionManager {
     * READ
     * */
     //retrive single login from the database
-    public LoginDAO read(int id) {
+    public SubjekDAO read(int id) {
         this.isNewRecord = false;
 
         try {
@@ -127,16 +123,16 @@ public class LoginDAO extends DBConnectionManager {
             ps.setInt(1, id);
             this.rs = ps.executeQuery();
 
-            LoginDAO loginDAO = null;
+            SubjekDAO subjekDAO = null;
             while (rs.next()) {
-                loginDAO = this.processRow(rs);
+                subjekDAO = this.processRow(rs);
             }
 
             this.conn.close();
 //            return this.logins.get(id - 1);
 
             System.out.print("DATA SELECTED FROM " + this.tableName);
-            return loginDAO;
+            return subjekDAO;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }
@@ -151,10 +147,10 @@ public class LoginDAO extends DBConnectionManager {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET number_ic=?, password=?, status=? WHERE id=?");
-            this.preparedStmt.setString(1, this.number_ic);
-            this.preparedStmt.setString(2, this.password);
-            this.preparedStmt.setString(3, this.status);
+            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET subjeknama=?, kelas_id=?, guru_id=? WHERE id=?");
+            this.preparedStmt.setString(1, this.subjeknama);
+            this.preparedStmt.setInt(2, this.kelas_id);
+            this.preparedStmt.setInt(3, this.guru_id);
             this.preparedStmt.setInt(4, this.id);
 
             // execute the preparedstatement
@@ -189,7 +185,7 @@ public class LoginDAO extends DBConnectionManager {
     }
 
     //retrive single login from the database
-    public LoginDAO findByNRIC(String NRIC) {
+    public SubjekDAO findByGuruID(int guru_id) {
         this.isNewRecord = false;
 
         try {
@@ -197,19 +193,19 @@ public class LoginDAO extends DBConnectionManager {
                 this.conn = getConnection();
 
             PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE number_ic=? LIMIT 1");
-            ps.setString(1, NRIC);
+            ps.setInt(1, guru_id);
             this.rs = ps.executeQuery();
 
-            LoginDAO loginDAO = null;
+            SubjekDAO subjekDAO= null;
             while (rs.next()) {
-                loginDAO = this.processRow(rs);
+                subjekDAO = this.processRow(rs);
             }
 
             this.conn.close();
 //            return this.logins.get(id - 1);
 
             System.out.print("DATA SELECTED FROM " + this.tableName);
-            return loginDAO;
+            return subjekDAO;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }
@@ -217,7 +213,7 @@ public class LoginDAO extends DBConnectionManager {
     }
 
     //retrive list of logins from the database
-    public List<LoginDAO> getAllLogins() {
+    public List<SubjekDAO> getAllSubjek() {
         try {
             if (this.conn.isClosed())
                 this.conn = getConnection();
@@ -238,11 +234,11 @@ public class LoginDAO extends DBConnectionManager {
         }
     }
 
-    protected LoginDAO processRow(ResultSet rs) throws SQLException {
+    protected SubjekDAO processRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
-        this.number_ic = rs.getString("number_ic");
-        this.password = rs.getString("password");
-        this.status = rs.getString("status");
+        this.subjeknama = rs.getString("subjeknama");
+        this.kelas_id = rs.getInt("kelas_id");
+        this.guru_id = rs.getInt("guru_id");
         return this;
     }
 }
