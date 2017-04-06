@@ -1,99 +1,61 @@
-<%-- 
-    Document   : index
-    Created on : Oct 28, 2016, 12:54:11 PM
-    Author     : Hp
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sk.ayerputeh</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
-        <link href="http://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet" />
-        <link href="default.css" rel="stylesheet" type="text/css" media="all" />
-        <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
-        <link rel="stylesheet" href="css/sky-forms.css">
-<!--[if IE 6]>
-<link href="default_ie6.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-    </head>
-    <body>
-       <div id="wrapper">
-	
-	<div id="menu-wrapper">
-		<div id="menu" class="container">
-                    <center><h2>SEKOLAH KEBANGSAAN AYER PUTEH</h2></center>
-		</div>
-		<!-- end #menu --> 
-	</div>
-           <div id="page" class="container">
-			
-		
-               <form method="post" action="http://localhost:35250/Psm/login.jsp" class="sky-form">
-                    <header>Log Masuk</header>
-                    <fieldset>
-                    <section style="width: 500px">
-                            <label class="label">Nama Pengguna :</label>
-			    <label class="input">
-                                <input type="text" name="v1" placeholder="Masukkan nombor kad pengenalan">
-			    </label>
-                            
-                    </section>
-                        
-                   
-                    <section style="width: 500px">
-                        <label class="label">Kata Laluan :</label>
-                        <label class="input">
-                            <input type="password" name="v2" placeholder="Masukkan kata laluan">
-                        </label>
-                    </section> 
-                    
-                        <section style="width: 500px">
-			<label class="label">Status</label>
-			<label class="input">
-		        	<input type="text" placeholder="Status" list="list">
-				<datalist id="list">
-				<option value="">Penyelia/Kerani</option>
-				<option value="">Guru</option>
-				<option value="">Pelajar</option>
-				</datalist>
-			</label>
-		    </section>    
-                        <footer>
-                                <button type="submit" class="button">Log Masuk</button>
-                        </footer>
-                        
-                   		    
-                    </fieldset>
-		</form>
-           </div>
-</div>
-	<div id="footer-wrapper">
-	<div id="footer" class="container">
-		
-		
-		<div id="box3">
-			<div class="title">
-				<h2>Follow Us</h2>
-			</div>
-			<p></p>
-			<ul class="contact">
-				<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
-				<li><a href="#" class="icon icon-facebook"><span>Facebook</span></a></li>
+<head>
+    <title>Sk.Ayer Puteh</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="page">
+    <div id="header">
+        <h1><a href="#">S.K.Ayer Puteh</a></h1>
+        <div id="menu">
+            <ul>
+                <li class="active"><a href="#">Menu Utama</a></li>
+                <li><a href="#">Maklumat Sekolah</a></li>
+                <li><a href="login1.jsp">Log Masuk</a></li>
 
-			</ul>
+            </ul>
+        </div><!-- menu -->
+    </div><!-- header -->
+    <center><img id="introimg" src="images/img.jpg" width="960" alt="" /></center>
+    <div id="main">
+        <div id="sidebar">
+            <h2>Misi KPM</h2>
+            <div class="box">
+                <p>MEMBANGUNKAN SISTEM PENDIDIKAN BERKUALITI YANG BERTARAF DUNIA BAGI MEMPERKEMBANGKAN POTENSI INDIVIDU SEPENUHNYA DAN MEMENUHI ASPIRASI NEGARA MALAYSIA</p>
+            </div>
+            <h2>Visi Sekolah</h2>
+            <div class="box1">
+                <p><div class="box1">
+                <p>MEMBANGUNKAN SISTEM PENDIDIKAN BERKUALITI YANG BERTARAF DUNIA BAGI MEMPERKEMBANGKAN POTENSI INDIVIDU SEPENUHNYA DAN MEMENUHI ASPIRASI NEGARA MALAYSIA</p>
+            </div></p>
+            </div>
 
-		</div>
-	</div>
-
-
-</div>
-<div id="copyright" class="container">
-	<p>&copy;SK.Ayer Puteh. All rights reserved.</p>
-</div>
-    </body>
+        </div><!-- sidebar -->
+        <div id="content">
+            <div class="post">
+                <h2>Maklumat Sekolah</h2>
+                <p></p>
+                <div class="entry">
+                    <p>Sekolah Kebangsaan Ayer Puteh merupakan sebuah Sekolah Kebangsaan yang terletak di Kampung Ayer Puteh , , Chukai , Terengganu Darul Iman, Malaysia.
+                        Pada 2009, Sekolah Kebangsaan Ayer Puteh memiliki 234 pelajar lelaki dan 211 pelajar perempuan, menjadikan jumlah keseluruhan murid seramai 445 orang. Ia mempunyai seramai 33 orang guru.</p>
+                </div>
+            </div><!-- post -->
+            <div class="post">
+            </div>
+            </div><!-- post -->
+        </div><!-- content -->
+        <div class="clearing">&nbsp;</div>
+    </div><!-- main -->
+    <div id="footer">
+        <p>&copy;SK.Ayer Puteh. All rights reserved.</p>
+    </div>
+</div><!-- page -->
+</body>
 </html>
