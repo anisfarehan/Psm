@@ -11,6 +11,7 @@ package com.ayerputeh.Controller.saveservlet;
  */
 
 import com.ayerputeh.Model.empdao.EmpDao;
+import com.ayerputeh.Model.PelajarDAO.PelajarDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,10 +53,11 @@ public class SaveServlet extends HttpServlet {
         e.setalamat(alamat);  
         e.setposkod(poskod);  
         e.setnegeri(negeri);  
-          
+
+        //code bwah ni tukar ami kan DAO saja
         int status= EmpDao.save(e);
-        if(status>0){  
-            out.print("<h2>Pendaftaran berjaya!</h2>");  
+        if(status>0){
+            out.print("<h3>Pendaftaran berjaya!</h3>");
             request.getRequestDispatcher("gurumain.jsp").include(request, response);  
         }else{  
             out.println("Maaf pendaftaran tidak berjaya");  

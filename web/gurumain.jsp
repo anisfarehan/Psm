@@ -16,8 +16,9 @@
 		<div id="menu">
 			<ul>
 				<li class="active"><a href="gurumain.jsp">Menu Utama</a></li>
-				<li><a href="#">Senarai Pelajar</a></li>
-				<li><a href="EditServlet">Rekod Akademik</a></li>
+				<li><a href="\ViewServlet">Senarai Pelajar</a></li>
+				<li><a href="gurudaftarpelajar.jsp">Pendaftaran Pelajar</a></li>
+				<li><a href="\EditServlet">Rekod Akademik</a></li>
 				<li><a href="#">Aktiviti Sekolah</a></li>
 				<li><a href="#">Akaun</a></li>
 				<li><a href="logout.jsp">Log Keluar</a></li>

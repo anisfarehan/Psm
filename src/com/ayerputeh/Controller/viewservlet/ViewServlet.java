@@ -25,47 +25,75 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/ViewServlet")  
+@WebServlet( "/ViewServlet")
 public class ViewServlet extends HttpServlet {  
     protected void doGet(HttpServletRequest request, HttpServletResponse response)   
                throws ServletException, IOException {  
         response.setContentType("text/html");
        
         PrintWriter out=response.getWriter();
-        out.print("<html>");
+        out.print("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+        out.print("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
         out.print("<head>");
-        out.print("<link href=\"default.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
-        out.print("<link href=\"fonts.css\" rel=\"stylesheet\" type=\"text/css\" media=\"all\" />");
-        out.print("<link rel=\"stylesheet\" href=\"css/sky-forms.css\">");
+        out.print("<title>Sk.Ayer Puteh</title>");
+        out.print("<meta name=\"keywords\" content=\"\" />");
+        out.print("<meta name=\"description\" content=\"\" />");
+        out.print("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
+        out.print("<meta http-equiv=\"content-language\" content=\"\" />");
+        out.print("<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\" />");
+        out.print("<link href=\"http://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=latin,latin-ext\" rel=\"stylesheet\" type=\"text/css\" />");
         out.print("</head>");
         out.print("<body>");
-        
-        out.println("<a href='index.html'>Add New Employee</a>");  
-        out.println("<h1>Employees List</h1>");  
-          
+        out.print("<div id=\"page\">");
+        out.print("<div id=\"header\">");
+        out.print("<div id=\"menu\">");
+        out.print("<ul>");
+        out.print("<li class=\"active\"><a href=\"gurumain.jsp\">Menu Utama</a></li>");
+        out.print("<li><a href=\"ViewServlet\">Senarai Pelajar</a></li>");
+        out.print("<li><a href=\"gurudaftarpelajar.jsp\">Pendaftaran Pelajar</a></li>");
+        out.print("<li><a href=\"EditServlet\">Rekod Akademik</a></li>");
+        out.print("<li><a href=\"#\">Aktiviti Sekolah</a></li>");
+        out.print("<li><a href=\"#\">Akaun</a></li>");
+        out.print("<li><a href=\"logout.jsp\">Log Keluar</a></li>");
+        out.print("</ul>");
+        out.print("</div><!-- menu -->");
+        out.print("</div><!-- header -->");
+        out.print("<img id=\"introimg\" src=\"images/Picture1.gif\" width=\"90\" height=\"70\" alt=\"\" />");
+        out.print("<div id=\"main\">");
+        out.print("<div id=\"sidebar\">");
+        out.print("<h2>Misi KPM</h2>");
+        out.print("<div class=\"box\">");
+        out.print("<p>MEMBANGUNKAN SISTEM PENDIDIKAN BERKUALITI YANG BERTARAF DUNIA BAGI MEMPERKEMBANGKAN POTENSI INDIVIDU SEPENUHNYA DAN MEMENUHI ASPIRASI NEGARA MALAYSIA</p>");
+        out.print("</div>");
+        out.print("<h2>Visi Sekolah</h2>");
+        out.print("<div class=\"box1\">");
+        out.print("<p><div class=\"box1\">");
+        out.print("<p>MEMBANGUNKAN SISTEM PENDIDIKAN BERKUALITI YANG BERTARAF DUNIA BAGI MEMPERKEMBANGKAN POTENSI INDIVIDU SEPENUHNYA DAN MEMENUHI ASPIRASI NEGARA MALAYSIA</p>");
+        out.print("</div></p>");
+        out.print("</div>");
+        out.print("</div><!-- sidebar -->");
+        out.print("	<div id=\"content\">");
+
         List<Emp> list= EmpDao.getAllEmployees();
-        out.println("<div id=\"menu\" class=\"container\">");
-	out.println("<ul>");		
-	out.println("<li class=\"current_page_item\"><a href=\"gurumain.jsp\" accesskey=\"1\" title=\"\">Menu Utama</a></li>");
-	out.println("<li><a href=\"gurudaftarpelajar.jsp\" accesskey=\"1\" title=\"\">Pelajar Baharu</a></li>");
-	out.println("<li><a href=\"gurupapar.jsp\" accesskey=\"2\" title=\"\">Pengisian Markah</a></li>");
-	out.println("<li><a href=\"gurukelas.jsp\" accesskey=\"3\" title=\"\">Pelajar Kelas</a></li>");
-	out.println("<li><a href=\"aktivit.jsp\" accesskey=\"4\" title=\"\">Aktivit Sekolah</a></li>");
-	out.println("<li><a href=\"keluar.jsp\" accesskey=\"5\" title=\"\">Log Keluar</a></li>");
-	out.println("</ul>");	
-	out.println("</div>");		
-        
-        //out.println("");
-        out.print("<table border='1' width='100%'");  
-        out.print("<tr><th>Id</th><th>Name</th><th>Password</th><th>Email</th><th>Country</th><th>Edit</th><th>Delete</th></tr>");  
-        for(Emp e:list){  
-         out.print("<tr><td>"+e.getId()+"</td><td>"+e.getpelajarnama()+"</td><td>"+e.getno_ic()+"</td><td>"+e.getnamaibu()+"</td><td>"+e.getnamabapa()+"</td><td><a href='EditServlet?id="+e.getId()+"'>edit</a></td><td><a href='DeleteServlet?id="+e.getId()+"'>delete</a></td></tr>");  
-         
-        }  
+        out.print("<table border='1' width='100%'");
+        out.print("<tr><th>Id</th><th>Name</th><th>Password</th><th>Email</th><th>Country</th><th>Edit</th><th>Delete</th></tr>");
+        for(Emp e:list){
+            out.print("<tr><td>"+e.getId()+"</td><td>"+e.getpelajarnama()+"</td><td>"+e.getno_ic()+"</td><td>"+e.getnamaibu()+"</td><td>"+e.getnamabapa()+"</td><td><a href='EditServlet?id="+e.getId()+"'>edit</a></td><td><a href='DeleteServlet?id="+e.getId()+"'>delete</a></td></tr>");
+
+        }
         out.print("</table>");
+
+
+        out.print(" </div>");
+        out.print("<div class=\"clearing\">&nbsp;</div>");
+        out.print("</div><!-- main -->");
+        out.print("<div id=\"footer\">");
+        out.print("<p>&copy;SK.Ayer Puteh. All rights reserved.</p>");
+        out.print(" </div>");
+        out.print(" </div><!-- page -->");
         out.print("</body>");
-         out.print("</html>");
-          
-        out.close();  
+        out.print("</html>");
+
+        out.close();
     }  
 } 

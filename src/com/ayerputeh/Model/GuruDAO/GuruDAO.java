@@ -89,7 +89,7 @@ public class GuruDAO extends DBConnectionManager{
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            // create the mysql insert preparedstatement
+            // create the mysql insert preparedstatement add data masuk dalam database
             this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (gurunama, no_ic, subjek_id,kelas_id) VALUES (?, ?, ?, ?, ?)");
             this.preparedStmt.setString(1, this.gurunama);
             this.preparedStmt.setInt(2, this.no_ic);

@@ -227,7 +227,7 @@ public class PelajarDAO extends DBConnectionManager{
     }
 
     //retrive list of logins from the database
-    public List<PelajarDAO> getAllLogins() {
+    public List<PelajarDAO> getAllPelajar() {
         try {
             if (this.conn.isClosed())
                 this.conn = getConnection();
