@@ -76,7 +76,7 @@ public class ViewServlet extends HttpServlet {
 
         List<Emp> list= EmpDao.getAllEmployees();
         out.print("<table border='1' width='100%'");
-        out.print("<tr><th>Id</th><th>Name</th><th>Password</th><th>Email</th><th>Country</th><th>Edit</th><th>Delete</th></tr>");
+        out.print("<tr><th>Id</th><th>Name</th><th>Nombor Kad Pengenalan</th><th>Nama Ibu</th><th>Nama Bapa</th><th>Edit</th><th>Delete</th></tr>");
         for(Emp e:list){
             out.print("<tr><td>"+e.getId()+"</td><td>"+e.getpelajarnama()+"</td><td>"+e.getno_ic()+"</td><td>"+e.getnamaibu()+"</td><td>"+e.getnamabapa()+"</td><td><a href='EditServlet?id="+e.getId()+"'>edit</a></td><td><a href='DeleteServlet?id="+e.getId()+"'>delete</a></td></tr>");
 

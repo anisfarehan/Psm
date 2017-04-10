@@ -51,7 +51,7 @@
 
 	</div><!-- sidebar -->
 	<div id="content">
-		<form action="SaveServlet" class="sky-form" method="post">
+		<form action="/SaveServlet" class="sky-form" method="post">
 			<header>Pendaftaran pelajar</header>
 
 			<fieldset>
