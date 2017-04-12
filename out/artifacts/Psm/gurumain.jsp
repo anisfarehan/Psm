@@ -16,18 +16,18 @@
 		<div id="menu">
 			<ul>
 				<li class="active"><a href="gurumain.jsp">Menu Utama</a></li>
-				<li><a href="\ViewServlet">Senarai Pelajar</a></li>
+				<li><a href="ViewServlet">Senarai Pelajar</a></li>
 				<li><a href="gurudaftarpelajar.jsp">Pendaftaran Pelajar</a></li>
-				<li><a href="\EditServlet">Rekod Akademik</a></li>
-				<li><a href="#">Aktiviti Sekolah</a></li>
-				<li><a href="#">Akaun</a></li>
+				<li><a href="EditServlet">Rekod Akademik</a></li>
+				<li><a href="AktivityServlet">Aktiviti Sekolah</a></li>
+				<li><a href="AkaunServlet">Akaun</a></li>
 				<li><a href="logout.jsp">Log Keluar</a></li>
 
 			</ul>
 		</div><!-- menu -->
 	</div><!-- header -->
 	<img id="introimg" src="images/Picture1.gif" width="90" height="70" alt="" />
-	<h3>Cikgu <%=session.getAttribute("number_ic")%></h3>
+	<h3>Cikgu Anis Farehan Binti Muhammad Fakihi   <%=session.getAttribute("number_ic")%></h3>
 	<div id="main">
 		<div id="sidebar">
 			<h2>Misi KPM</h2>

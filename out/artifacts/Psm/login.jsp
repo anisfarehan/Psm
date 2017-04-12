@@ -50,8 +50,12 @@
                 if(number.equals(userdbName) && password.equals(userdbPsw) && status.equals(dbUsertype))
                 {
                     session.setAttribute("number_ic",userdbName);
-                    session.setAttribute("status", dbUsertype);
-                    response.sendRedirect("gurumain.jsp");
+                    if(status.equals(1)) {
+                        session.setAttribute("status", dbUsertype);
+                        response.sendRedirect("gurumain.jsp");
+                    }
+                    else
+                        response.sendRedirect("gurudaftarpelajar.jsp");
                 }
             }
             else

@@ -37,30 +37,28 @@ public class EditServlet extends HttpServlet {
 
        // Emp e=EmpDao.getEmployeeById(id); //by kelas id
 
-
-
-out.print("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
-out.print("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
-out.print("<head>");
-	out.print("<title>Sk.Ayer Puteh</title>");
-	out.print("<meta name=\"keywords\" content=\"\" />");
-	out.print("<meta name=\"description\" content=\"\" />");
-	out.print("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
-	out.print("<meta http-equiv=\"content-language\" content=\"\" />");
-	out.print("<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\" />");
-	out.print("<link href=\"http://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=latin,latin-ext\" rel=\"stylesheet\" type=\"text/css\" />");
-    out.print("</head>");
+        out.print("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+        out.print("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+        out.print("<head>");
+        out.print("<title>Sk.Ayer Puteh</title>");
+        out.print("<meta name=\"keywords\" content=\"\" />");
+        out.print("<meta name=\"description\" content=\"\" />");
+        out.print("<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />");
+        out.print("<meta http-equiv=\"content-language\" content=\"\" />");
+        out.print("<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\" />");
+        out.print("<link href=\"http://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=latin,latin-ext\" rel=\"stylesheet\" type=\"text/css\" />");
+        out.print("</head>");
         out.print("<body>");
         out.print("<div id=\"page\">");
         out.print("<div id=\"header\">");
         out.print("<div id=\"menu\">");
         out.print("<ul>");
-        out.print("<li class=\"active\"><a href=\"gurumain.jsp\">Menu Utama</a></li>");
+        out.print("<li><a href=\"gurumain.jsp\">Menu Utama</a></li>");
         out.print("<li><a href=\"ViewServlet\">Senarai Pelajar</a></li>");
         out.print("<li><a href=\"gurudaftarpelajar.jsp\">Pendaftaran Pelajar</a></li>");
-        out.print("<li><a href=\"EditServlet\">Rekod Akademik</a></li>");
-        out.print("<li><a href=\"#\">Aktiviti Sekolah</a></li>");
-        out.print("<li><a href=\"#\">Akaun</a></li>");
+        out.print("<li class=\"active\"><a href=\"EditServlet\">Rekod Akademik</a></li>");
+        out.print("<li><a href=\"AktivityServlet\">Aktiviti Sekolah</a></li>");
+        out.print("<li><a href=\"AkaunServlet\">Akaun</a></li>");
         out.print("<li><a href=\"logout.jsp\">Log Keluar</a></li>");
         out.print("</ul>");
         out.print("</div><!-- menu -->");
@@ -80,32 +78,18 @@ out.print("<head>");
         out.print("</div>");
         out.print("</div><!-- sidebar -->");
         out.print("	<div id=\"content\">");
-        out.print("<form action='EditServlet2' method='post' class=\"sky-form\">");
-        out.print("<header>Senarai Pelajar Kelas 1 D</header>");
-        out.print("<fieldset>");
-        out.print("<section>");
-        out.print("<label class=\"label\">");
-        out.print("<table id=\"d01\" width=\"433\" border=\"1\">");
-        out.print("<tbody>");
-        out.print("<tr>");
-        out.print("<td>Nama</td><td>Nilai Markah</td><td>Gred</td><td></td>");
-        out.print("</tr>");
-
         List<Emp> list= EmpDao.getAllEmployees();
+        out.print("<table border='1' width='100%'");
+        out.print("<tr><th>Name</th><th>Nilai</th><th>Gred</th></tr>");
+
         for(Emp e:list){
             out.print("<tr><td>"+e.getpelajarnama()+"</td><td><input size=\"5\" type='text' name='name' value=''/></td><td><label type='text' name='name' value='A'/></td></tr>");
         }
-        out.print("</section>");
+        out.print("</table>");
 
-        out.print("</fieldset>");
-
-        out.print("");
-        out.print("<button type=\"submit\" class=\"button\">Kemaskini</button>");
-        out.print("<button type=\"button\" class=\"button button-secondary\" onclick=\"window.history.back();\">Kembali</button>\n" +"");
-        out.print("");
-        out.print(" </form>");
 
         out.print(" </div>");
+
         out.print("<div class=\"clearing\">&nbsp;</div>");
         out.print("</div><!-- main -->");
         out.print("<div id=\"footer\">");

@@ -48,12 +48,12 @@ public class ViewServlet extends HttpServlet {
         out.print("<div id=\"header\">");
         out.print("<div id=\"menu\">");
         out.print("<ul>");
-        out.print("<li class=\"active\"><a href=\"gurumain.jsp\">Menu Utama</a></li>");
-        out.print("<li><a href=\"ViewServlet\">Senarai Pelajar</a></li>");
+        out.print("<li><a href=\"gurumain.jsp\">Menu Utama</a></li>");
+        out.print("<li class=\"active\"><a href=\"ViewServlet\">Senarai Pelajar</a></li>");
         out.print("<li><a href=\"gurudaftarpelajar.jsp\">Pendaftaran Pelajar</a></li>");
         out.print("<li><a href=\"EditServlet\">Rekod Akademik</a></li>");
-        out.print("<li><a href=\"#\">Aktiviti Sekolah</a></li>");
-        out.print("<li><a href=\"#\">Akaun</a></li>");
+        out.print("<li><a href=\"AktivityServlet\">Aktiviti Sekolah</a></li>");
+        out.print("<li><a href=\"AkaunServlet\">Akaun</a></li>");
         out.print("<li><a href=\"logout.jsp\">Log Keluar</a></li>");
         out.print("</ul>");
         out.print("</div><!-- menu -->");
@@ -76,7 +76,7 @@ public class ViewServlet extends HttpServlet {
 
         List<Emp> list= EmpDao.getAllEmployees();
         out.print("<table border='1' width='100%'");
-        out.print("<tr><th>Id</th><th>Name</th><th>Nombor Kad Pengenalan</th><th>Nama Ibu</th><th>Nama Bapa</th><th>Edit</th><th>Delete</th></tr>");
+        out.print("<tr><th>Id</th><th>Name</th><th>Nombor Kad Pengenalan</th><th>Nama Ibu</th><th>Nama Bapa</th><th>Kemaskini</th><th>Padam</th></tr>");
         for(Emp e:list){
             out.print("<tr><td>"+e.getId()+"</td><td>"+e.getpelajarnama()+"</td><td>"+e.getno_ic()+"</td><td>"+e.getnamaibu()+"</td><td>"+e.getnamabapa()+"</td><td><a href='EditServlet?id="+e.getId()+"'>edit</a></td><td><a href='DeleteServlet?id="+e.getId()+"'>delete</a></td></tr>");
 

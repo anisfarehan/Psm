@@ -12,7 +12,7 @@
     <title>Login Error</title>
 </head>
 <body>
-<center><p style="color:red">Maaf makluman anda tidak tersenarai.</p></center>
+<p style="color:red">Maaf makluman anda tidak tersenarai.</p>
 <%
     getServletContext().getRequestDispatcher("/login1.jsp").include(request, response);
 %>

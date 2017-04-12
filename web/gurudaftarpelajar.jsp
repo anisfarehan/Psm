@@ -1,4 +1,9 @@
-<%-- 
+<%@page import="com.ayerputeh.Model.LoginDAO.LoginDAO" %>
+
+<%
+	LoginDAO loginDAO = new LoginDAO().read(1);
+%>
+<%--
     Document   : gurumain page
     Created on : Nov 16, 2016, 2:37:26 AM
     Author     : Hp
@@ -23,12 +28,12 @@
 	<div id="header">
 		<div id="menu">
 			<ul>
-				<li class="active"><a href="gurumain.jsp">Menu Utama</a></li>
-				<li><a href="#">Senarai Pelajar</a></li>
-				<li><a href="gurudaftarpelajar.jsp">Pendaftaran Pelajar</a></li>
+				<li><a href="gurumain.jsp">Menu Utama</a></li>
+				<li><a href="ViewServlet">Senarai Pelajar</a></li>
+				<li class="active"><a href="gurudaftarpelajar.jsp">Pendaftaran Pelajar</a></li>
 				<li><a href="EditServlet">Rekod Akademik</a></li>
-				<li><a href="#">Aktiviti Sekolah</a></li>
-				<li><a href="#">Akaun</a></li>
+				<li><a href="AktivityServlet">Aktiviti Sekolah</a></li>
+				<li><a href="AkaunServlet">Akaun</a></li>
 				<li><a href="logout.jsp">Log Keluar</a></li>
 
 			</ul>
@@ -51,7 +56,7 @@
 
 	</div><!-- sidebar -->
 	<div id="content">
-		<form action="/SaveServlet" class="sky-form" method="post">
+		<form action="SaveServlet" class="sky-form" method="post">
 			<header>Pendaftaran pelajar</header>
 
 			<fieldset>
@@ -65,7 +70,7 @@
 				<section>
 					<label class="label">No. Kad Pengenalan :</label>
 					<label class="input">
-						<input type="text" name="no_ic">
+						<input type="text" name="no_ic" value="<%=loginDAO.number_ic%>">
 					</label>
 				</section>
 				<section>

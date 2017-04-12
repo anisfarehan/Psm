@@ -49,8 +49,8 @@ public class PublicServlet extends HttpServlet {
         loginDAO.create();*/
 
         //SELECT login model
-        LoginDAO loginDAO = new LoginDAO().read(1/*Primary Key 1*/);
-//        System.out.print(loginDAO.number_ic);
+        /*LoginDAO loginDAO = new LoginDAO().read(1*//*Primary Key 1*//*);
+        response.getWriter().print(loginDAO.number_ic);*/
 
         //SELECT and UPDATE login model
         /*LoginDAO loginDAO = new LoginDAO().read(2*//*Primary Key 1*//*);
@@ -71,15 +71,15 @@ public class PublicServlet extends HttpServlet {
         /*
         * convert object to JSON
         * */
-        Gson gson = new Gson();
-        String json = gson.toJson(loginDAO);
+        /*Gson gson = new Gson();
+        String json = gson.toJson(loginDAO);*/
 
         /*
         * response the JSON
         * */
-        response.setContentType("application/json");
+        /*response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().print(json);
-        response.getWriter().flush();
+        response.getWriter().flush();*/
     }
 }

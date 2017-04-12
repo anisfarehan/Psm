@@ -11,7 +11,6 @@ package com.ayerputeh.Controller.saveservlet;
  */
 
 import com.ayerputeh.Model.empdao.EmpDao;
-import com.ayerputeh.Model.PelajarDAO.PelajarDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

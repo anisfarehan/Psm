@@ -45,7 +45,7 @@
 
     <div id="menu-wrapper">
         <div id="menu" class="container">
-            <center><h2>SEKOLAH KEBANGSAAN AYER PUTEH</h2></center>
+            <h2>SEKOLAH KEBANGSAAN AYER PUTEH</h2>
         </div>
         <!-- end #menu -->
     </div>
@@ -74,15 +74,15 @@
                 <section style="width: 500px">
                     <label class="label">Status</label>
                     <label class="input">
-                        <input type="password" name="status" placeholder="Status">
+                        <input type="text" name="status" placeholder="Status">
                         <datalist id="list" name="status">
                             <%
                                 while(rs.next())
                                 {
                                     String status = rs.getString("status");
                             %>
-                            <option value="<%=status%>"><%=status%></option>
-                            <option value="<%=status%>"><%=status%></option>
+                            <option value="1"><%=status%></option>
+                            <option value="2"><%=status%></option>
                             <%
                                     }
                                 }
@@ -103,16 +103,10 @@
         </form>
     </div>
 </div>
-<div id="footer-wrapper">
-    <div id="footer" class="container">
-
-
-     </div>
-
-
-</div>
-<div id="copyright" class="container">
+<div id="footer">
     <p>&copy;SK.Ayer Puteh. All rights reserved.</p>
 </div>
+</div><!-- page -->
+
 </body>
 </html>
