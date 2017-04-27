@@ -8,72 +8,61 @@
     <title>Login</title>
 </head>
 <body>
-<%!
-
-
-
-    String userdbName;
-    String userdbPsw;
-    String dbUsertype;
-%>
+<%@ page import ="java.sql.*" %>
 <%
-    Connection con= null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-
-    String driverName = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/ayerputeh";
-    String user = "root";
-    String dbpsw = "";
-
-    String sql = "select * from login where number_ic=? and password=? and status=?";
-
-    String number = request.getParameter("number_ic");
+    String number_ic= request.getParameter("number_ic");
     String password = request.getParameter("password");
-    String status = request.getParameter("status");
+    String guru = request.getParameter("status");
+    String penyelia = request.getParameter("status");
+    String notel = request.getParameter("notel");
 
-    if((!(number.equals(null) || number.equals("")) && !(password.equals(null) || password.equals(""))) && !status.equals("select"))
-    {
-        try{
-            Class.forName(driverName);
-            con = DriverManager.getConnection(url, user, dbpsw);
-            ps = con.prepareStatement(sql);
-            ps.setString(1, number);
-            ps.setString(2, password);
-            ps.setString(3, status);
-            rs = ps.executeQuery();
-            if(rs.next())
-            {
-                userdbName = rs.getString("number_ic");
-                userdbPsw = rs.getString("password");
-                dbUsertype = rs.getString("status");
-                if(number.equals(userdbName) && password.equals(userdbPsw) && status.equals(dbUsertype))
-                {
-                    session.setAttribute("number_ic",userdbName);
-                    if(status.equals(1)) {
-                        session.setAttribute("status", dbUsertype);
-                        response.sendRedirect("gurumain.jsp");
-                    }
-                    else
-                        response.sendRedirect("gurudaftarpelajar.jsp");
-                }
-            }
-            else
-                response.sendRedirect("error.jsp");
-            rs.close();
-            ps.close();
-        }
-        catch(SQLException sqe)
-        {
-            out.println(sqe);
-        }
+    Class.forName("com.mysql.jdbc.Driver");
+    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh",
+            "root", "");
+    Statement st = con.createStatement();
+    Statement rd = con.createStatement();
+
+    ResultSet rs,ps;
+
+    rs = st.executeQuery("select * from login where number_ic='" + number_ic+ "' and password='" + password + "'and status='" + guru+ "'");
+    ps = rd.executeQuery("select * from login where number_ic ='" + number_ic+ "' and password='" + password + "'and status='" + penyelia +"'");
+
+    if (rs.next()) {
+        session.setAttribute("number_ic", number_ic);
+        session.setAttribute("status", guru);
+
+        //out.println("welcome " + userid);
+        //out.println("<a href='logout.jsp'>Log out</a>");
+        response.sendRedirect("gurumain.jsp");
+
     }
-    else
+
+    else if (ps.next())
     {
-%>
-<center><p style="color:red">Kata Laluan atau kad pengenalan yang dimasukkan salah</p></center>
-<%
-        getServletContext().getRequestDispatcher("/login1.jsp").include(request, response);
+        session.setAttribute("number_ic", number_ic);
+        //out.println("welcome " + userid);
+        //out.println("<a href='logout.jsp'>Log out</a>");
+        response.sendRedirect("penyeliamain.jsp");
+
+
+    }
+
+
+
+
+  /*  else if (username.equals("uname")&& pwd.equals("pass") && pengurus.equals("pengurus"))
+    {
+        session.setAttribute("uname",username);
+        response.sendRedirect("success.jsp");
+    }*/
+
+    /*else if (ps.next()) {
+        session.setAttribute("uname", username);
+
+        response.sendRedirect("succes.jsp");
+    }*/
+    else {
+        out.println("Kata Laluan atau kad pengenalan salah <a href='index.jsp'> Cuba sekali lagi</a>");
     }
 %>
 </body>

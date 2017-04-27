@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
         LoginDAO loginDAO = new LoginDAO().findByNRIC(number_ic);
 
-        if (loginDAO.password == password) {
+//        if (loginDAO.password == password) {
         /*
         * convert object to JSON
         * */
@@ -38,12 +38,12 @@ public class LoginServlet extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().print(json);
             response.getWriter().flush();
-        }
+//        }
 
-        response.setContentType("application/json");
+        /*response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().print("");
-        response.getWriter().flush();
+        response.getWriter().print("{statusMsg: 'error'}");
+        response.getWriter().flush();*/
 
     }
 

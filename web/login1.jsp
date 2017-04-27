@@ -23,32 +23,14 @@
     <![endif]-->
 </head>
 <body>
-<%
-    Connection con= null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
 
-    String driverName = "com.mysql.jdbc.Driver";
-    String url = "jdbc:mysql://localhost:3306/ayerputeh";
-    String user = "root";
-    String password = "";
-
-    String sql = "select status from login";
-
-    try {
-        Class.forName(driverName);
-        con = DriverManager.getConnection(url, user, password);
-        ps = con.prepareStatement(sql);
-        rs = ps.executeQuery();
-%>
 <div id="wrapper">
 
-    <div id="menu-wrapper">
         <div id="menu" class="container">
             <h2>SEKOLAH KEBANGSAAN AYER PUTEH</h2>
         </div>
         <!-- end #menu -->
-    </div>
+
     <div id="page" class="container">
 
 
@@ -71,27 +53,15 @@
                     </label>
                 </section>
 
-                <section style="width: 500px">
+                <section>
                     <label class="label">Status</label>
-                    <label class="input">
-                        <input type="text" name="status" placeholder="Status">
-                        <datalist id="list" name="status">
-                            <%
-                                while(rs.next())
-                                {
-                                    String status = rs.getString("status");
-                            %>
-                            <option value="1"><%=status%></option>
-                            <option value="2"><%=status%></option>
-                            <%
-                                    }
-                                }
-                                catch(SQLException sqe)
-                                {
-                                    out.println("login1"+sqe);
-                                }
-                            %>
-                        </datalist>
+                    <label class="select">
+                        <select name="status">
+                            <option name="kelas_id" value="guru">Guru</option>
+                            <option value="penyelia">Penyelia</option>
+
+                        </select>
+                        <i></i>
                     </label>
                 </section>
                 <footer>
@@ -104,7 +74,7 @@
     </div>
 </div>
 <div id="footer">
-    <p>&copy;SK.Ayer Puteh. All rights reserved.</p>
+    <p>&copy;SK.Ayer Puteh. Hak Cipta Terpelihara.</p>
 </div>
 </div><!-- page -->
 

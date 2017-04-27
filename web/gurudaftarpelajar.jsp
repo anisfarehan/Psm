@@ -1,12 +1,14 @@
 <%@page import="com.ayerputeh.Model.LoginDAO.LoginDAO" %>
 
 <%
-	LoginDAO loginDAO = new LoginDAO().read(1);
+
+	String number_ic = request.getParameter("number_ic");
+	LoginDAO loginDAO = new LoginDAO().findByNRIC(number_ic);
 %>
 <%--
     Document   : gurumain page
     Created on : Nov 16, 2016, 2:37:26 AM
-    Author     : Hp
+    Author     : Yang Hp
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

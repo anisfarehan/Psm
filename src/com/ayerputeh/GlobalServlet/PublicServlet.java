@@ -44,8 +44,8 @@ public class PublicServlet extends HttpServlet {
         //CREATE login model
         /*LoginDAO loginDAO = new LoginDAO();
         loginDAO.number_ic = "921025045501";
-        loginDAO.password = "mizan";
-        loginDAO.status = "ibubapa";
+        loginDAO.password = "";
+        loginDAO.status = "";
         loginDAO.create();*/
 
         //SELECT login model
