@@ -51,8 +51,29 @@ public class EmpDao {
         }catch(Exception ex){ex.printStackTrace();}  
           
         return status;  
-    }  
-    public static int update(Emp e){  //edit atau kemaskini
+    }
+    public static int update(Emp e){
+        int status=0;
+        try{
+            Connection con=getConnection();
+            PreparedStatement ps=con.prepareStatement("update pelajar set pelajarnama=?,no_ic=?,namaibu=?,namabapa=?,agama=?,warganegara=?,kelas_id=?,alamat=?,poskod=?,negeri=? where id=?");
+
+            ps.setString(1,e.getpelajarnama());
+            ps.setString(2,e.getno_ic());
+            ps.setString(3,e.getnamaibu());
+            ps.setString(4,e.getnamabapa());
+            ps.setString(5,e.getagama());
+            ps.setString(6,e.getwarganegara());
+            ps.setString(7,e.getkelas_id());
+            ps.setString(8,e.getalamat());
+            ps.setString(9,e.getposkod());
+            ps.setString(10,e.getnegeri());
+
+            status=ps.executeUpdate();
+        }catch(Exception u){System.out.println(u);}
+        return status;
+    }
+    /*public static int update(Emp e){  //edit atau kemaskini
         int status=0;  
         try{  
             Connection con= EmpDao.getConnection();
@@ -76,7 +97,7 @@ public class EmpDao {
         }catch(Exception ex){ex.printStackTrace();}  
           
         return status;  
-    }  
+    }*/
     public static int delete(int id){  //delete 
         int status=0;  
         try{  
@@ -89,8 +110,34 @@ public class EmpDao {
         }catch(Exception e){e.printStackTrace();}  
           
         return status;  
-    }  
-    public static Emp getEmployeeById(int id){  //class tuk view by id
+    }
+    public static Emp getEmployeeById(int id){
+        Emp e=null;
+        try{
+            Connection con=getConnection();
+            PreparedStatement ps=con.prepareStatement("select * from pelajar where id=?");
+            ps.setInt(1,id);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                e=new Emp();
+
+                e.setId(rs.getInt("id"));
+                e.setpelajarnama(rs.getString("pelajarnama"));
+                e.setno_ic(rs.getString("no_ic"));
+                e.setnamaibu(rs.getString("namaibu"));
+                e.setnamabapa(rs.getString("namabapa"));
+                e.setagama(rs.getString("agama"));
+                e.setwarganegara(rs.getString("warganegara"));
+                e.setkelas_id(rs.getString("kelas_id"));
+                e.setalamat(rs.getString("alamat"));
+                e.setposkod(rs.getString("poskod"));
+                e.setnegeri(rs.getString("negeri"));
+
+                            }
+        }catch(Exception u){System.out.println(u);}
+        return e;
+    }
+    /*public static Emp getEmployeeById(int id){  //class tuk view by id
         Emp e=new Emp();
           
         try{  
@@ -115,7 +162,7 @@ public class EmpDao {
         }catch(Exception ex){ex.printStackTrace();}  
           
         return e;  
-    }  
+    }  */
     public static List<Emp> getAllEmployees(){  //class utk view
         List<Emp> list=new ArrayList<Emp>();
           
