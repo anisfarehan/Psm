@@ -18,26 +18,31 @@ private String pelajarnama,no_ic,namaibu,namabapa,agama,warganegara,kelas_id,ala
         return id_subjek;
     }
 
-    public void setId_subjek(int id_subjek) {
+    public void setId_subjek(int id_subjek)
+    {
 
         this.id_subjek = id_subjek;
     }
 
-    public int getId_final() {
+    public int getId_final()
+    {
         return id_final;
     }
 
-    public void setId_final(int id_final) {
+    public void setId_final(int id_final)
+    {
 
         this.id_final = id_final;
     }
 
-    public String getSubjeknama() {
+    public String getSubjeknama()
+    {
 
         return subjeknama;
     }
 
-    public void setSubjeknama(String subjeknama) {
+    public void setSubjeknama(String subjeknama)
+    {
 
         this.subjeknama = subjeknama;
     }

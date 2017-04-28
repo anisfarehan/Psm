@@ -1,7 +1,7 @@
 
 <%--
-    Document   : gurumain page
-    Created on : Nov 16, 2016, 2:37:26 AM
+    Document   : penyelidetailedit page
+    Created on : april 16, 2017, 2:37:26 AM
     Author     : Yang Hp
 --%>
 
@@ -24,12 +24,13 @@
     <div id="header">
         <div id="menu">
             <ul>
-                <li><a href="gurumain.jsp">Menu Utama</a></li>
-                <li><a href="ViewServlet">Senarai Pelajar</a></li>
-                <li class="active"><a href="gurudaftarpelajar.jsp">Pendaftaran Pelajar</a></li>
-                <li><a href="EditServlet">Rekod Akademik</a></li>
-                <li><a href="AktivityServlet">Aktiviti Sekolah</a></li>
-                <li><a href="AkaunServlet">Akaun</a></li>
+                <li><a href="penyeliamain.jsp">Menu Utama</a></li>
+                <li><a href="#">Senarai Guru</a></li>
+                <li class="active"><a href="Penyeliaviewpelajar.jsp">Senarai Murid</a></li>
+                <li ><a href="gurudaftarpelajar.jsp">Daftar Tenaga Pengajar</a></li>
+                <li><a href="#">Rekod Akademik</a></li>
+                <li><a href="#">Aktiviti Sekolah</a></li>
+                <li><a href="#">Akaun</a></li>
                 <li><a href="logout.jsp">Log Keluar</a></li>
 
             </ul>
@@ -52,45 +53,34 @@
 
     </div><!-- sidebar -->
     <div id="content">
-        <form action="AddAktiviti" class="sky-form" method="post">
-            <header>Pendaftaran pelajar</header>
+        <%@ page import="com.ayerputeh.Controller.emp.Emp" %>
+        <%@ page import="com.ayerputeh.Model.empdao.EmpDao" %>
+        <%@ page import="static com.ayerputeh.Model.empdao.EmpDao.getEmployeeById" %>
 
-            <fieldset>
-                <section>
-                    <label class="label">Nama Aktiviti :</label>
-                    <label class="input">
-                        <input type="text" name="aktivitinama">
-                    </label>
-                </section>
+        <%
+            String id=request.getParameter("id");
+            Emp e= getEmployeeById(Integer.parseInt(id));
+        %>
 
-                <section>
-                    <label class="label">Tarikh :</label>
-                    <label class="input">
-                        <input type="text" name="tarikh" >
-                    </label>
-                </section>
+        <header>Kemaskini Maklumat Pelajar</header>
 
 
-            </fieldset>
+        <form action="editprocess.jsp" method="post">
+            <table border="0">
+                <tr><td>Nama Pelajar:</td><td><input name="pelajarnama" value="<%=e.getpelajarnama()%>"/></td></tr>
+                <tr><td>Kad Pengenalan:</td><td><input type="text" name="no_ic" value="<%=e.getno_ic()%>"/></td></tr>
+                <tr><td>Nama Bapa:</td><td><input type="text" name="namabapa" value="<%=e.getnamabapa() %>"/></td></tr>
+                <tr><td>Nama Ibu:</td><td><input type="text" name="namaibu" value="<%=e.getnamaibu() %>"/></td></tr>
+                <tr><td>Alamat Surat Menyurat:</td><td><textarea  type="text" name="alamat" value="<%=e.getalamat()%>"/></td></tr>
 
+                <td colspan="2"><input type="submit" value="Kemaskini Maklumat"/></td>
 
-
-            <fieldset>
-                <section>
-                    <label class="label">Huraian :</label>
-                    <label class="textarea">
-                        <textarea rows="3" name="huraian"></textarea>
-                    </label>
-
-                </section>
-
-            </fieldset>
-
-            <footer>
-                <button type="submit" class="button">Daftar</button>
-                <button type="button" class="button button-secondary" onclick="window.history.back();">Kembali</button>
-            </footer>
+            </table>
         </form>
+
+
+
+
     </div>
     <!-- post -->
 </div><!-- content -->

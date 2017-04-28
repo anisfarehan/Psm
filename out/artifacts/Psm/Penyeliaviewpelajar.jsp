@@ -24,12 +24,13 @@
     <div id="header">
         <div id="menu">
             <ul>
-                <li><a href="gurumain.jsp">Menu Utama</a></li>
-                <li><a href="ViewServlet">Senarai Pelajar</a></li>
-                <li class="active"><a href="gurudaftarpelajar.jsp">Pendaftaran Pelajar</a></li>
-                <li><a href="EditServlet">Rekod Akademik</a></li>
-                <li><a href="AktivityServlet">Aktiviti Sekolah</a></li>
-                <li><a href="AkaunServlet">Akaun</a></li>
+                <li><a href="penyeliamain.jsp">Menu Utama</a></li>
+                <li><a href="#">Senarai Guru</a></li>
+                <li class="active"><a href="Penyeliaviewpelajar.jsp">Senarai Murid</a></li>
+                <li ><a href="gurudaftarpelajar.jsp">Daftar Tenaga Pengajar</a></li>
+                <li><a href="#">Rekod Akademik</a></li>
+                <li><a href="#">Aktiviti Sekolah</a></li>
+                <li><a href="#">Akaun</a></li>
                 <li><a href="logout.jsp">Log Keluar</a></li>
 
             </ul>
@@ -52,46 +53,37 @@
 
     </div><!-- sidebar -->
     <div id="content">
-        <form action="AddAktiviti" class="sky-form" method="post">
-            <header>Pendaftaran pelajar</header>
+        <%@ page import="com.ayerputeh.Controller.emp.Emp" %>
+        <%@ page import="com.ayerputeh.Model.empdao.EmpDao" %>
+        <%@ page import="java.util.List" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-            <fieldset>
-                <section>
-                    <label class="label">Nama Aktiviti :</label>
-                    <label class="input">
-                        <input type="text" name="aktivitinama">
-                    </label>
-                </section>
+        <header>Senarai Pelajar</header>
 
-                <section>
-                    <label class="label">Tarikh :</label>
-                    <label class="input">
-                        <input type="text" name="tarikh" >
-                    </label>
-                </section>
+        <%
+            List<Emp> list= EmpDao.getAllEmployees();
+            request.setAttribute("list",list);
+        %>
+
+        <table border="0" width="90%">
+            <tr><th>Id</th><th>Nama Pelajar</th><th>Kad Pengenalan</th><th>Kelas</th><th></th><th></th></tr>
+            <c:forEach items="${list}" var="e">
+                <tr><td>
+                    <label class="label">${e.getId()}</label>
+
+                </td>
+                    <td><label class="label">${e.getpelajarnama()}</label></td>
+                    <td><label class="label">${e.getno_ic()}</label> </td>
+                    <td><label class="label">${e.getkelas_id()}</label> </td>
+                    <td><a href="Penyeliadetailedit.jsp?id=${e.getId()}">Maklumat Lanjut</a></td>
+                    <td><a href="deleteuser.jsp?id=${e.getId()}">Padam</a></td>
+                </tr>
+            </c:forEach>
+        </table>
 
 
-            </fieldset>
 
-
-
-            <fieldset>
-                <section>
-                    <label class="label">Huraian :</label>
-                    <label class="textarea">
-                        <textarea rows="3" name="huraian"></textarea>
-                    </label>
-
-                </section>
-
-            </fieldset>
-
-            <footer>
-                <button type="submit" class="button">Daftar</button>
-                <button type="button" class="button button-secondary" onclick="window.history.back();">Kembali</button>
-            </footer>
-        </form>
-    </div>
+                </div>
     <!-- post -->
 </div><!-- content -->
 <div class="clearing">&nbsp;</div>

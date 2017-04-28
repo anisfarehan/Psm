@@ -17,7 +17,7 @@
 <h1>Edit Form</h1>
 <form action="editprocess.jsp" method="post">
     <table>
-        <tr><td>Name:</td><td><input type="text" name="name" value="<%=e.getId() %>"/></td></tr>
+        <tr><td>Name:</td><td><input type="text" name="id" value="<%=e.getId() %>"/></td></tr>
         <tr><td>Password:</td><td><input type="text" name="pelajarnama" value="<%=e.getpelajarnama() %>"/></td></tr>
         <tr><td>Email:</td><td><input type="text" name="no_ic" value="<%=e.getno_ic() %>"/></td></tr>
 

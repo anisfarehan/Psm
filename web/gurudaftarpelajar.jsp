@@ -1,10 +1,4 @@
-<%@page import="com.ayerputeh.Model.LoginDAO.LoginDAO" %>
 
-<%
-
-	String number_ic = request.getParameter("number_ic");
-	LoginDAO loginDAO = new LoginDAO().findByNRIC(number_ic);
-%>
 <%--
     Document   : gurumain page
     Created on : Nov 16, 2016, 2:37:26 AM
@@ -72,7 +66,7 @@
 				<section>
 					<label class="label">No. Kad Pengenalan :</label>
 					<label class="input">
-						<input type="text" name="no_ic" value="<%=loginDAO.number_ic%>">
+						<input type="text" name="no_ic" >
 					</label>
 				</section>
 				<section>

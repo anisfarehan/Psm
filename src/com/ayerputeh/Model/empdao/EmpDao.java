@@ -25,13 +25,13 @@ public class EmpDao {
         try{  
             Class.forName("com.mysql.jdbc.Driver");  
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
-        }catch(Exception e){System.out.println(e);}  
+        }catch(Exception u){System.out.println(u);}
         return con;  
     }  
     public static int save(Emp e){  //siimpan data
         int status=0;  
         try{  
-            Connection con= EmpDao.getConnection();
+            Connection con= getConnection();
             PreparedStatement ps=con.prepareStatement("insert into pelajar(pelajarnama,no_ic,namaibu,namabapa,agama,warganegara,kelas_id,alamat,poskod,negeri) values (?,?,?,?,?,?,?,?,?,?)");  
             
             ps.setString(1,e.getpelajarnama());  
@@ -47,8 +47,8 @@ public class EmpDao {
               
             status=ps.executeUpdate();  
               
-            con.close();  
-        }catch(Exception ex){ex.printStackTrace();}  
+
+        }catch(Exception u){System.out.println(u);}
           
         return status;  
     }
