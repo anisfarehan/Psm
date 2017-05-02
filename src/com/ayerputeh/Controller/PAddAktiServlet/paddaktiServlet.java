@@ -35,14 +35,14 @@ public class paddaktiServlet extends HttpServlet {
         String tarikh=request.getParameter("tarikh");
         String huraian=request.getParameter("huraian");
 
-        Aktiviti u=new Aktiviti();
-        u.setAktivitinama(aktivitinama);
-        u.setTarikh(tarikh);
-        u.setHuraian(huraian);
+        Aktiviti e=new Aktiviti();
+        e.setAktivitinama(aktivitinama);
+        e.setTarikh(tarikh);
+        e.setHuraian(huraian);
 
 
         //code bwah ni tukar ami kan DAO saja
-        int status= AddaktivitiDAO.save(u);
+        int status= AddaktivitiDAO.save(e);
         if(status>0){
             out.print("<h3>Pendaftaran berjaya!</h3>");
             request.getRequestDispatcher("penyeliamain.jsp").include(request, response);

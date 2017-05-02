@@ -87,7 +87,7 @@
 <div class="clearing">&nbsp;</div>
 </div><!-- main -->
 <div id="footer">
-    <p>&copy;SK.Ayer Puteh. Hak Cipta Terpelihara.</p>
+    <color>white</color><p>&copy;SK.Ayer Puteh. Hak Cipta Terpelihara.</p>
 </div>
 </div><!-- page -->
 </body>

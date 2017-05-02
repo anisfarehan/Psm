@@ -38,7 +38,7 @@
             <header>Log Masuk</header>
             <fieldset>
                 <section style="width: 500px">
-                    <label class="label">Nama Pengguna :</label>
+                    <label class="label">Kad Pengenalan Pengguna :</label>
                     <label class="input">
                         <input type="text" name="number_ic" placeholder="Masukkan nombor kad pengenalan">
                     </label>
@@ -57,7 +57,7 @@
                     <label class="label">Status</label>
                     <label class="select">
                         <select name="status">
-                            <option name="kelas_id" value="guru">Guru</option>
+                            <option value="guru">Guru</option>
                             <option value="penyelia">Penyelia</option>
 
                         </select>

@@ -12,9 +12,9 @@
 <%
     String number_ic= request.getParameter("number_ic");
     String password = request.getParameter("password");
+    String nama = request.getParameter("nama");
     String guru = request.getParameter("status");
     String penyelia = request.getParameter("status");
-    String notel = request.getParameter("notel");
 
     Class.forName("com.mysql.jdbc.Driver");
     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh",
@@ -24,25 +24,28 @@
 
     ResultSet rs,ps;
 
-    rs = st.executeQuery("select * from login where number_ic='" + number_ic+ "' and password='" + password + "'and status='" + guru+ "'");
-    ps = rd.executeQuery("select * from login where number_ic ='" + number_ic+ "' and password='" + password + "'and status='" + penyelia +"'");
+    rs = st.executeQuery("select * from login where number_ic='" + number_ic+ "' and  password='" + password + "'and penyelia='" + penyelia+ "'");
+    ps = rd.executeQuery("select * from login where number_ic ='" + number_ic+ "' and  password='" + password + "'and guru='" + guru +"'");
 
     if (rs.next()) {
+        session.setAttribute("nama", nama);
         session.setAttribute("number_ic", number_ic);
-        session.setAttribute("status", guru);
+        session.setAttribute("status", penyelia);
 
         //out.println("welcome " + userid);
         //out.println("<a href='logout.jsp'>Log out</a>");
-        response.sendRedirect("gurumain.jsp");
+        response.sendRedirect("penyeliamain.jsp");
 
     }
 
     else if (ps.next())
     {
+        session.setAttribute("nama", nama);
         session.setAttribute("number_ic", number_ic);
+        session.setAttribute("status", guru);
         //out.println("welcome " + userid);
         //out.println("<a href='logout.jsp'>Log out</a>");
-        response.sendRedirect("penyeliamain.jsp");
+        response.sendRedirect("gurumain.jsp");
 
 
     }

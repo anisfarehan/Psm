@@ -27,7 +27,7 @@
 		</div><!-- menu -->
 	</div><!-- header -->
 	<img id="introimg" src="images/Picture1.gif" width="90" height="70" alt="" />
-	<h3>Cikgu Anis Farehan Binti Muhammad Fakihi   <%=session.getAttribute("number_ic")%></h3>
+	<h3><%=session.getAttribute("status")%> <%=session.getAttribute("nama")%> <%=session.getAttribute("number_ic")%></h3>
 	<div id="main">
 		<div id="sidebar">
 			<h2>Misi KPM</h2>

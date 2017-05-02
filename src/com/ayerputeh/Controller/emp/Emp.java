@@ -11,8 +11,15 @@ package com.ayerputeh.Controller.emp;
  */
 public class Emp {  
 private int id;  
-private String pelajarnama,no_ic,namaibu,namabapa,agama,warganegara,kelas_id,alamat,poskod,negeri;
+private String publisher,pelajarnama,no_ic,namaibu,namabapa,agama,warganegara,kelas_id,alamat,poskod,negeri;
 
+    public String getPublisher(){
+        return publisher;
+    }
+    public  void setPublisher(String publisher){
+
+        this.publisher = publisher;
+    }
     public int getId_subjek()
     {
         return id_subjek;
@@ -207,6 +214,32 @@ public String getnegeri() {
 public void setnegeri(String negeri) {  
 
     this.negeri = negeri;
-}  
-  
-}  
+}
+
+private String number_ic,password, status,nama;
+    public String getNumber_ic(){
+        return number_ic;
+    }
+    public void setNumber_ic(String number_ic){
+        this.number_ic = number_ic;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public void setPassword(String password){
+        this.password = password;
+    }
+    public String getStatus(){
+        return status;
+    }
+    public void setStatus(String status){
+        this.status = status;
+    }
+    public String getNama(){
+        return nama;
+    }
+    public void setNama( String nama){
+        this.nama = nama;
+    }
+
+}

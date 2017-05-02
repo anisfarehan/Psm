@@ -52,8 +52,8 @@
 
     </div><!-- sidebar -->
     <div id="content">
-        <form action="AddAktiviti" class="sky-form" method="post">
-            <header>Pendaftaran pelajar</header>
+        <form action="paddaktiServlet" class="sky-form" method="post">
+            <header>Tambah Aktiviti Baharu</header>
 
             <fieldset>
                 <section>

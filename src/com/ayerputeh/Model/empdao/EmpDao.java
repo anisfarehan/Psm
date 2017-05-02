@@ -27,10 +27,12 @@ public class EmpDao {
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
         }catch(Exception u){System.out.println(u);}
         return con;  
-    }  
+    }
+
     public static int save(Emp e){  //siimpan data
-        int status=0;  
-        try{  
+        int status=0;
+
+        try{
             Connection con= getConnection();
             PreparedStatement ps=con.prepareStatement("insert into pelajar(pelajarnama,no_ic,namaibu,namabapa,agama,warganegara,kelas_id,alamat,poskod,negeri) values (?,?,?,?,?,?,?,?,?,?)");  
             
