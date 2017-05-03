@@ -1,9 +1,45 @@
-
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
 <%--
     Document   : gurumain page
     Created on : Nov 16, 2016, 2:37:26 AM
     Author     : Yang Hp
 --%>
+
+<%
+
+    Connection con=null;
+    PreparedStatement pstmt=null;
+    ResultSet rs=null;
+    int count=0;
+    String aid=null,rid=null;
+    try
+    {
+        Class.forName("com.mysql.jdbc.Driver");
+        System.out.println("...........3.......");
+        con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
+        pstmt=con.prepareStatement("select count(id) from aktiviti");
+        rs=pstmt.executeQuery();
+        while(rs.next())
+        {
+            count=rs.getInt(1)+1;
+        }
+
+
+
+        aid=""+count;
+        rid=""+count;
+
+
+    }
+    catch(Exception e)
+    {
+        e.printStackTrace();
+    }
+%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -24,12 +60,12 @@
     <div id="header">
         <div id="menu">
             <ul>
-                <li><a href="gurumain.jsp">Menu Utama</a></li>
-                <li><a href="ViewServlet">Senarai Pelajar</a></li>
-                <li class="active"><a href="gurudaftarpelajar.jsp">Pendaftaran Pelajar</a></li>
-                <li><a href="EditServlet">Rekod Akademik</a></li>
-                <li><a href="AktivityServlet">Aktiviti Sekolah</a></li>
-                <li><a href="AkaunServlet">Akaun</a></li>
+                <li><a href="penyeliamain.jsp">Menu Utama</a></li>
+                <li><a href="#">Senarai Guru</a></li>
+                <li class="active"><a href="PenyeliaAddGuru.jsp">Kemasukkan Guru Baharu</a></li>
+                <li><a href="#">Rekod Akademik Pelajar</a></li>
+                <li><a href="PenyeliaAddAktiviti.jsp">Kemasukkan Aktiviti</a></li>
+                <li><a href="#">Akaun</a></li>
                 <li><a href="logout.jsp">Log Keluar</a></li>
 
             </ul>
@@ -52,7 +88,7 @@
 
     </div><!-- sidebar -->
     <div id="content">
-        <form action="paddaktiServlet" class="sky-form" method="post">
+        <form action="PenyeliaAddAktiviti" class="sky-form" method="post">
             <header>Tambah Aktiviti Baharu</header>
 
             <fieldset>

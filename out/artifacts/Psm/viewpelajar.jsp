@@ -15,7 +15,7 @@
 <h1>Users List</h1>
 
 <%
-    List<Emp> list= EmpDao.getEmployeeById();
+    List<Emp> list= EmpDao.getAllEmployees();
     request.setAttribute("list",list);
 %>
 

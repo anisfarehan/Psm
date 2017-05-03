@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Driver;
 
 /**
- * Created by Mizan on 01-Apr-17.
+ * Created by  on 01-Apr-17.
  *
  * http://stackoverflow.com/questions/10915375/create-a-class-to-connect-to-any-database-using-jdbc
  */

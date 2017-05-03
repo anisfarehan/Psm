@@ -15,12 +15,12 @@
 	<div id="header">
 		<div id="menu">
 			<ul>
-				<li class="active"><a href="gurumain.jsp">Menu Utama</a></li>
-				<li><a href="GuruViewServlet">Senarai Guru</a></li>
-				<li><a href="gurudaftar.jsp">Kemasukkan Guru Baharu</a></li>
-				<li><a href="GuruPrestasiServlet">Rekod Akademik Pelajar</a></li>
-				<li><a href="GuruAktivityServlet">Kemasukkan Aktiviti</a></li>
-				<li><a href="AkaunPenyeliaServlet">Akaun</a></li>
+				<li class="active"><a href="penyeliamain.jsp">Menu Utama</a></li>
+				<li><a href="#">Senarai Guru</a></li>
+				<li><a href="PenyeliaAddGuru.jsp">Kemasukkan Guru Baharu</a></li>
+				<li><a href="#">Rekod Akademik Pelajar</a></li>
+				<li><a href="PenyeliaAddAktiviti.jsp">Kemasukkan Aktiviti</a></li>
+				<li><a href="#">Akaun</a></li>
 				<li><a href="logout.jsp">Log Keluar</a></li>
 
 			</ul>
