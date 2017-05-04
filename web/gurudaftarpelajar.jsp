@@ -1,9 +1,50 @@
-
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
 <%--
     Document   : gurumain page
     Created on : Nov 16, 2016, 2:37:26 AM
     Author     : Yang Hp
 --%>
+<%
+
+	Connection con=null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	int count=0;
+	String sid=null,no_ic=null;
+	try
+	{
+		//ServletContext sc=getServletContext();
+		//String driver=sc.getInitParameter("driver");
+		//String url=sc.getInitParameter("url");
+		//String uname=sc.getInitParameter("user");
+		//String pwd=sc.getInitParameter("dbpassword");
+		Class.forName("com.mysql.jdbc.Driver");
+		System.out.println("...........3.......");
+		con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
+		pstmt=con.prepareStatement("select count(id) from login");
+		rs=pstmt.executeQuery();
+		while(rs.next())
+		{
+			count=rs.getInt(1)+1;
+		}
+
+
+
+
+		sid="Pelajar "+count;
+		no_ic=""+count;
+
+
+
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+	}
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -52,8 +93,8 @@
 
 	</div><!-- sidebar -->
 	<div id="content">
-		<form action="SaveServlet" class="sky-form" method="post">
-			<header>Pendaftaran pelajar</header>
+		<form action="GuruAddPelajar" class="sky-form" method="post">
+			<header>Pendaftaran pelajar baharu</header>
 
 			<fieldset>
 				<section>
@@ -86,10 +127,10 @@
 					<label class="label">Agama :</label>
 					<label class="select" >
 						<select name="agama">
-							<option name="agama"value="">Islam</option>
-							<option value="">Buddha</option>
-							<option value="">Kristian</option>
-							<option value="">Lain-lain</option>
+							<option value="islam">Islam</option>
+							<option value="buddha">Buddha</option>
+							<option value="kristian">Kristian</option>
+							<option value="lain-lain">Lain-lain</option>
 
 						</select>
 						<i></i>
@@ -99,31 +140,14 @@
 					<label class="label">Kaum :</label>
 					<label class="input">
 						<select name="warganegara">
-							<option value="">Melayu</option>
-							<option value="">India</option>
-							<option value="">Cina</option>
-							<option value="">Lain-lain</option>
+							<option value="melayu">Melayu</option>
+							<option value="india">India</option>
+							<option value="cina">Cina</option>
+							<option value="lain-lain">Lain-lain</option>
 
 						</select>
 					</label>
 				</section>
-
-			</fieldset>
-
-			<fieldset>
-				<section>
-					<label class="label">Kelas</label>
-					<label class="select">
-						<select name="kelas_id">
-							<option name="kelas_id" value="">Arif</option>
-							<option value="">Bistari</option>
-							<option value="">Cerdik</option>
-
-						</select>
-						<i></i>
-					</label>
-				</section>
-
 
 			</fieldset>
 
@@ -154,7 +178,7 @@
 			</fieldset>
 
 			<footer>
-				<button type="submit" class="button">Daftar</button>
+				<button type="submit" class="button">Seterusnya</button>
 				<button type="button" class="button button-secondary" onclick="window.history.back();">Kembali</button>
 			</footer>
 		</form>
