@@ -1,38 +1,135 @@
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>View Users</title>
-</head>
-<body>
+<%@ page language="java" %>
+<%@ page session="true" %>
+<%@ page import="java.sql.*,java.io.*,java.util.Random"%>
+<HTML>
+<HEAD>
 
-<%@ page import="com.ayerputeh.Controller.emp.Emp" %>
-<%@ page import="com.ayerputeh.Model.empdao.EmpDao" %>
-<%@ page import="java.util.List" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <LINK href="styles.css" type="text/css" rel="stylesheet">
+    <script LANGUAGE="Javascript" SRC="Images/validate.js"></script>
+    <title>Adminresponse</title>
+    <script language="javascript">
+        function Checkfiles()
+        {
 
-<h1>Users List</h1>
+            var fup = document.getElementById('my_file_element').value;
+            alert(fup);
+            if(fup=="")
+            {
+                alert("Upload at least one file");
+                document.getElementById('my_file_element').focus();
+                return false;
+            }
+            else if(fup!="")
+            {
+                alert("Not null");
+                var fileName = fup;
 
-<%
-    List<Emp> list= EmpDao.getAllEmployees();
-    request.setAttribute("list",list);
+                var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+                alert(ext);
+                if(ext == "gif" || ext == "GIF" || ext == "JPEG" || ext == "jpeg" || ext == "jpg" || ext == "JPG")
+
+                {
+                    alert("correct format");
+                    return true;
+
+                }
+
+                else
+
+                {
+
+                    alert("Upload Gif or Jpg images only");
+                    document.getElementById('my_file_element').focus();
+                    return false;
+
+                }
+                return false;
+            }
+        }</script>
+</HEAD>
+
+<body class="SC">
+<form name="get ElementById">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <h3 align=center>UPDATE STUDENT DETAILS</h3>
+        <%
+/*Declaration of variables*/
+
+Connection con;
+PreparedStatement pstmt;
+ResultSet rs=null;
+
+
+
+
+try
+{
+	//ServletContext sc=getServletContext();
+	//String driver=sc.getInitParameter("driver");
+	//String url=sc.getInitParameter("url");
+	//String uname=sc.getInitParameter("user");
+	//String pwd=sc.getInitParameter("dbpassword");
+	Class.forName("com.mysql.jdbc.Driver");
+	 System.out.println("...........3.......");
+	 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
+       	  pstmt=con.prepareStatement("select * from student_details");
+    	   rs=pstmt.executeQuery();
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+}
+if(rs!=null)
+{
 %>
+    <br>
+    <table class=notebook align=center border=1 cellspacing="0" bordercolor="black">
+        <tr class=row_title>
+            <th align="center">Student Name</th>
+            <th align="center">Current Standard</th>
+            <th align="center">Current Division</th>
+            <th align="center">Parent MailID</th>
+            <th align="center">Joining Date</th>
+            <th align="center">Report CardNo</th>
+            <th align="center">Edit</th>
+                <%
+int DisRow=0;
+	/*Getting the values from the database*/
 
-<table border="1" width="90%">
-    <tr><th>Id</th><th>Name</th><th>Password</th><th>Email</th><th>Sex</th><th>Country</th><th>Edit</th><th>Delete</th></tr>
-    <c:forEach items="${list}" var="e">
-        <tr><td>${e.getId()}</td>
-            <td>${e.getpelajarnama()}</td>
-            <td>${e.getno_ic()}</td>
-            <td>${e.getnamaibu()}</td>
-            <td>${e.getnamabapa()}</td>
-            <td><a href="editpelajar.jsp?id=${e.getId()}">Edit</a></td>
-            <td><a href="deleteuser.jsp?id=${e.getId()}">Delete</a></td>
-        </tr>
-    </c:forEach>
-</table>
-<br/><a href="adduserform.jsp">Add New User</a>
+	while(rs.next())
+	{
 
-</body>
-</html>
+	   DisRow++;
+	%>
+        <tr class= <%=(DisRow%2!=0)? "row_even" : "row_odd"%>>
+
+            <td align="center"><%=rs.getString(2)  %></td>
+            <td align="center"><%=rs.getString(4)%></td>
+            <td align="center"><%=rs.getString(5)  %></td>
+            <td align="center"><%=rs.getString(6)%></td>
+            <td align="center"><%=rs.getString(7)  %></td>
+            <td align="center"><%=rs.getString(8)%></td>
+            <td align="center"><a href="UpdateStudentDetails1.jsp?sno=<%=rs.getString(1)%>">Edit</a></td>
+                <%
+	}
+	rs.close();
+if(DisRow==0)
+{
+	%>
+        <tr><th colspan=5>No Records found</th></tr>
+        <%
+                }
+            }
+        %>
+    </table>
+    <br>	<br>	<br>
+</BODY>
+
+</HTML>
