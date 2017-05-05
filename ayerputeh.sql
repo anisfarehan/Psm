@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
--- https://www.phpmyadmin.net/
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 01, 2017 at 03:12 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.2
+-- Host: 127.0.0.1
+-- Generation Time: May 05, 2017 at 05:02 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `ayerputeh`
@@ -26,12 +26,22 @@ SET time_zone = "+00:00";
 -- Table structure for table `aktiviti`
 --
 
-CREATE TABLE `aktiviti` (
-  `id` int(12) NOT NULL,
+CREATE TABLE IF NOT EXISTS `aktiviti` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
   `aktivitinama` varchar(200) NOT NULL,
-  `tarikh` date NOT NULL,
-  `huraian` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `tarikh` varchar(40) NOT NULL,
+  `huraian` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `aktiviti`
+--
+
+INSERT INTO `aktiviti` (`id`, `aktivitinama`, `tarikh`, `huraian`) VALUES
+(1, 'rotong royong', '12/12/2017', 'melibatkan kesemua pelajar dan kaki tangan sekolah'),
+(2, 'rotong royong', '12/12/2017', 'melibatkan kesemua pelajar dan kaki tangan sekolah'),
+(3, 'Sukaneka', '9/09/2009', 'koko');
 
 -- --------------------------------------------------------
 
@@ -39,11 +49,12 @@ CREATE TABLE `aktiviti` (
 -- Table structure for table `final`
 --
 
-CREATE TABLE `final` (
-  `id` int(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `final` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `subjek_id` int(20) NOT NULL,
-  `jumlah` decimal(50,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jumlah` decimal(50,0) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -51,20 +62,23 @@ CREATE TABLE `final` (
 -- Table structure for table `guru`
 --
 
-CREATE TABLE `guru` (
-  `id` int(200) NOT NULL,
+CREATE TABLE IF NOT EXISTS `guru` (
+  `id` int(200) NOT NULL AUTO_INCREMENT,
   `gurunama` varchar(100) NOT NULL,
-  `no_ic` int(12) NOT NULL,
-  `subjek_id` int(200) NOT NULL,
-  `kelas_id` int(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `no_ic` varchar(20) NOT NULL,
+  `subjek_id` varchar(200) NOT NULL,
+  `kelas_id` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `guru`
 --
 
 INSERT INTO `guru` (`id`, `gurunama`, `no_ic`, `subjek_id`, `kelas_id`) VALUES
-(1, 'Faridah', 902222, 2, 1);
+(3, 'ooooo', '0', 'Subject3', '1'),
+(4, 'Razak', '90000', 'Subject4', '1');
 
 -- --------------------------------------------------------
 
@@ -72,18 +86,20 @@ INSERT INTO `guru` (`id`, `gurunama`, `no_ic`, `subjek_id`, `kelas_id`) VALUES
 -- Table structure for table `kelas`
 --
 
-CREATE TABLE `kelas` (
-  `id` int(12) NOT NULL,
+CREATE TABLE IF NOT EXISTS `kelas` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
   `kelasnama` varchar(20) NOT NULL,
-  `guru_id` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `guru_id` int(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `kelas`
 --
 
 INSERT INTO `kelas` (`id`, `kelasnama`, `guru_id`) VALUES
-(1, 'Arif', 1);
+(1, 'Arif', 1),
+(2, 'Bistari', 2);
 
 -- --------------------------------------------------------
 
@@ -91,19 +107,30 @@ INSERT INTO `kelas` (`id`, `kelasnama`, `guru_id`) VALUES
 -- Table structure for table `login`
 --
 
-CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `number_ic` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(255) DEFAULT NULL,
+  `nama` varchar(200) NOT NULL,
+  `guru` varchar(200) NOT NULL,
+  `penyelia` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `number_ic`, `password`, `status`) VALUES
-(1, '9303', 'anis', 'guru');
+INSERT INTO `login` (`id`, `number_ic`, `password`, `status`, `nama`, `guru`, `penyelia`) VALUES
+(1, '920319035066', 'farehan', 'Penyelia', 'Farah Wahida Binti Muhammad Fakihi', '', 'penyelia'),
+(2, '950529035333', '950529035333', 'pelajar', 'Muhammad Muaz Hafifi Bin Muhammad Fakihi', '', ''),
+(12, '0', '0', 'Guru', 'ooooo', 'guru', ''),
+(13, '90000', '90000', 'Guru', 'Razak', 'guru', ''),
+(14, '930317035924', '930317035924', 'Pelajar', 'Anis Farehan Binti Muhammad Fakihi', '', 'pelajar'),
+(15, '987654321', '987654321', 'Pelajar', 'alon', '', 'pelajar'),
+(16, '987654321', '987654321', 'Pelajar', 'alon', '', 'pelajar'),
+(17, '1234567890', '1234567890', 'Pelajar', 'qwertyuiop', '', 'pelajar');
 
 -- --------------------------------------------------------
 
@@ -111,8 +138,8 @@ INSERT INTO `login` (`id`, `number_ic`, `password`, `status`) VALUES
 -- Table structure for table `pelajar`
 --
 
-CREATE TABLE `pelajar` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pelajar` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `pelajarnama` varchar(200) NOT NULL,
   `no_ic` varchar(12) NOT NULL,
   `namaibu` varchar(200) NOT NULL,
@@ -122,28 +149,23 @@ CREATE TABLE `pelajar` (
   `kelas_id` varchar(20) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `poskod` varchar(10) NOT NULL,
-  `negeri` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `negeri` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `pelajar`
 --
 
 INSERT INTO `pelajar` (`id`, `pelajarnama`, `no_ic`, `namaibu`, `namabapa`, `agama`, `warganegara`, `kelas_id`, `alamat`, `poskod`, `negeri`) VALUES
-(1, 'Muhammad muaz hafifi', '950511223', 'che siti aminah', 'fakihi', 'illass', 'malsia', 'arif', 'machang', '1700', 'kelantan'),
-(2, 'Anis Farehan', '93031798', 'che siti', 'njnj', '', '', 'Bistari', 'jnkj', '998', 'nnj'),
-(3, 'anis farehan', '8787', 'gvgb', 'ghvgv', '', '', '', 'bhb', 'hbhj', 'jnhj'),
-(4, 'muhammad muaz hafifi', '930317035924', 'che siti aminah', 'muhammad fakihi', '', '', '', 'lot machang', '3555', 'Kelantan'),
-(5, 'anis farehan', '9999999', 'siti', 'fakihi', '', '', '', 'lot ', '455559', '4433'),
-(6, 'anis farehan', '9999999', 'siti', 'fakihi', '', '', '', 'lot ', '455559', '4433'),
-(7, 'wan muhammad aqwa haziq bin mohd hazri', '00041204567', 'faezah binti che hussain', 'mohd hazri bin ', '', '', '', 'kg bechsh', '999', 'kl'),
-(8, 'ANIS FAREHAN', '900', 'jiji', 'FAKIHI', '', '', '', 'Lot 2864 kampung bechah hilir tendong', '17030', 'Kelantan'),
-(9, 'ANIS FAREHAN', '999', 'hihi', 'gh', '', '', '', 'Lot 2864 kampung bechah hilir tendong', '17030', 'Kelantan'),
-(10, 'ANIS FAREHAN', '97777', '888', 'FAKIHI', '', '', '', 'Lot 2864 kampung bechah hilir tendong', '17030', 'Kelantan'),
-(11, 'muhammad hazim bin alias', '93089888787', 'mazehah', 'alias bin mamat', '', '', '', 'hjuhjuh', 'hhg', 'bhjbj'),
-(12, 'ANIS FAREHAN', '9888', 'huhu', 'kjkjk', '', '', '', 'Lot 2864 kampung bechah hilir tendong', '17030', 'Kelantan'),
-(13, 'jiwa', '99', 'bhbhj', 'hbh', '', '', '', 'jhj', 'jjhj', 'nn'),
-(14, 'jiwa', '99', 'bhbhj', 'hbh', '', '', '', 'jhj', 'jjhj', 'nn');
+(1, 'Muhammad Muaz Hafifi Bin Muhammad Fakihi', '950529035333', 'Che Siti Aminah Binti Che Hussain', 'Muhammad Fakihi Bin Muhammad Fakihi', 'Islam', 'Malaysia', '', 'Lot 2864, Kg Bechah Hilir Tendong, 17030 Pasir Mas', '17030', 'Kelantan'),
+(2, 'Anis Farehan Binti Muhammad Fakihi', '930317035924', 'Che Siti Aminah Binti Che Hussin', 'Muhammad Fakihi Bin Yusof', '', '', '', 'lot 25jdgnfdjn', '17030', 'kelantan'),
+(3, 'alon', '987654321', 'bj', 'bn', '', '', '', 'jhgfdgh', '199', 'hjh'),
+(4, 'alon', '987654321', 'bj', 'bn', '', '', '', 'jhgfdgh', '199', 'hjh'),
+(5, 'hhhj', 'gfgh', 'hbhj', 'hu', '', '', '', 'ghj', 'jhhj', 'jj'),
+(6, 'qwertyuiop', '1234567890', 'qwertyuiopo', 'asdfghjkl', '', '', '', 'qwertyjnyuu', '12345678', 'sdfghjk'),
+(7, 'qwertyuiop', '1234567890', 'qwertyuiopo', 'asdfghjkl', '', '', '', 'qwertyjnyuu', '12345678', 'sdfghjk');
 
 -- --------------------------------------------------------
 
@@ -151,11 +173,12 @@ INSERT INTO `pelajar` (`id`, `pelajarnama`, `no_ic`, `namaibu`, `namabapa`, `aga
 -- Table structure for table `penggal1`
 --
 
-CREATE TABLE `penggal1` (
-  `id` int(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `penggal1` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `subjek_id` int(20) NOT NULL,
-  `jumlah1` decimal(50,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jumlah1` decimal(50,0) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -163,11 +186,12 @@ CREATE TABLE `penggal1` (
 -- Table structure for table `penggal2`
 --
 
-CREATE TABLE `penggal2` (
-  `id` int(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `penggal2` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
   `subjek_id` int(20) NOT NULL,
-  `jumlah2` decimal(50,0) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jumlah2` decimal(50,0) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -175,12 +199,13 @@ CREATE TABLE `penggal2` (
 -- Table structure for table `subjek`
 --
 
-CREATE TABLE `subjek` (
-  `id` int(12) NOT NULL,
+CREATE TABLE IF NOT EXISTS `subjek` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
   `subjeknama` varchar(200) NOT NULL,
   `kelas_id` int(10) NOT NULL,
-  `guru_id` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `guru_id` int(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `subjek`
@@ -189,115 +214,6 @@ CREATE TABLE `subjek` (
 INSERT INTO `subjek` (`id`, `subjeknama`, `kelas_id`, `guru_id`) VALUES
 (1, 'Bahasa Melayu', 1, 1);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `aktiviti`
---
-ALTER TABLE `aktiviti`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `final`
---
-ALTER TABLE `final`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `guru`
---
-ALTER TABLE `guru`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Indexes for table `kelas`
---
-ALTER TABLE `kelas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pelajar`
---
-ALTER TABLE `pelajar`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
--- Indexes for table `penggal1`
---
-ALTER TABLE `penggal1`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `penggal2`
---
-ALTER TABLE `penggal2`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `subjek`
---
-ALTER TABLE `subjek`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `aktiviti`
---
-ALTER TABLE `aktiviti`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `final`
---
-ALTER TABLE `final`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `guru`
---
-ALTER TABLE `guru`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `kelas`
---
-ALTER TABLE `kelas`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `pelajar`
---
-ALTER TABLE `pelajar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT for table `penggal1`
---
-ALTER TABLE `penggal1`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `penggal2`
---
-ALTER TABLE `penggal2`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `subjek`
---
-ALTER TABLE `subjek`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

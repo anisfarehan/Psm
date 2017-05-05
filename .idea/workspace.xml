@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a4954c1-124b-43f5-b4b7-fd4df5688bf7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Psm/WEB-INF/classes/com/ayerputeh/GlobalServlet/AppakaunServlet.class" afterPath="$PROJECT_DIR$/out/artifacts/Psm/WEB-INF/classes/com/ayerputeh/GlobalServlet/AppakaunServlet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Psm/WEB-INF/classes/com/ayerputeh/Model/LoginDAO/LoginDAO.class" afterPath="$PROJECT_DIR$/out/artifacts/Psm/WEB-INF/classes/com/ayerputeh/Model/LoginDAO/LoginDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Psm/com/ayerputeh/GlobalServlet/AppakaunServlet.class" afterPath="$PROJECT_DIR$/out/production/Psm/com/ayerputeh/GlobalServlet/AppakaunServlet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Psm/com/ayerputeh/Model/LoginDAO/LoginDAO.class" afterPath="$PROJECT_DIR$/out/production/Psm/com/ayerputeh/Model/LoginDAO/LoginDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/ayerputeh/Model/LoginDAO/LoginDAO.java" afterPath="$PROJECT_DIR$/src/com/ayerputeh/Model/LoginDAO/LoginDAO.java" />
-    </list>
+    <list default="true" id="6a4954c1-124b-43f5-b4b7-fd4df5688bf7" name="Default" comment="" />
     <ignored path="Psm.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -1049,15 +1042,15 @@
       <workItem from="1493875987144" duration="5486000" />
       <workItem from="1493924388092" duration="9375000" />
       <workItem from="1493978699518" duration="3170000" />
-      <workItem from="1493987981267" duration="667000" />
+      <workItem from="1493987981267" duration="1267000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175873000" />
+    <option name="totallyTimeSpent" value="176473000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1384" height="786" extended-state="6" />
+    <frame x="-9" y="-9" width="1384" height="786" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
