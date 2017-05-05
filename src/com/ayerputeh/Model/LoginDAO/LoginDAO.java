@@ -20,7 +20,7 @@ public class LoginDAO extends DBConnectionManager {
      * TABLE COLUMN NAME
      *******************************/
     private  int id;
-    public String number_ic, password, status;
+    public String number_ic, password, status, nama, guru, penyelia;
 
     /******************************
      * DATABASE VARIABLES
