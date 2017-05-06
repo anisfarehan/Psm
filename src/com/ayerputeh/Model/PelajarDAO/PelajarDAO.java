@@ -153,7 +153,7 @@ public class PelajarDAO extends DBConnectionManager{
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET pelajarnama=?, no_ic=?, namaibu=?, namabapa=?, agama=?, wwarganegara=?, kelas_id=?, alamat=?, poskod=?, negeri=? WHERE id=?");
+            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET pelajarnama=?, no_ic=?, namaibu=?, namabapa=?, agama=?, warganegara=?, kelas_id=?, alamat=?, poskod=?, negeri=? WHERE id=?");
             this.preparedStmt.setString(1, this.pelajarnama);
             this.preparedStmt.setString(2, this.no_ic);
             this.preparedStmt.setString(3, this.namaibu);
@@ -206,7 +206,7 @@ public class PelajarDAO extends DBConnectionManager{
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE number_ic=? LIMIT 1");
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE no_ic=? LIMIT 1");
             ps.setString(1, NRIC);
             this.rs = ps.executeQuery();
 
