@@ -18,10 +18,9 @@ import java.io.IOException;
 public class AppakaunServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(request.getReader(), JsonObject.class);
-        String pelajarnama = data.get("pelajarnama").getAsString();
-        String no_ic= data.get("no_ic").getAsString();
+        int user_id = data.get("user_id").getAsInt();
 
-        PelajarDAO pelajarDAO = new PelajarDAO().findByNRIC(pelajarnama);
+        PelajarDAO pelajarDAO = new PelajarDAO().read(user_id);
 
 //        if (loginDAO.password == password) {
         /*

@@ -14,7 +14,7 @@ public class DBConnectionManager {
     private static String url = "jdbc:mysql://localhost:3306/ayerputeh";
     private static String driverName = "com.mysql.jdbc.Driver";
     private static String username = "root";
-    private static String password = "";
+    private static String password = "password";
     private static Connection con;
 
     public DBConnectionManager(){

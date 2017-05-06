@@ -1,6 +1,8 @@
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 
+src/com/ayerputeh/GlobalServlet/DBConnectionManager.java
+
 *~
 *.sw[mnpcod]
 *.log
