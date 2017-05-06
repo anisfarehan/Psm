@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a4954c1-124b-43f5-b4b7-fd4df5688bf7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/ayerputeh/crud/GuruAddPelajar.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/Psm/WEB-INF/classes/com/ayerputeh/crud/GuruAddPelajar/GuruAddPelajar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Psm/com/ayerputeh/crud/GuruAddPelajar/GuruAddPelajar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/ayerputeh/crud/GuruAddPelajar/GuruAddPelajar.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Psm/gurudaftarpelajar.jsp" afterPath="$PROJECT_DIR$/out/artifacts/Psm/gurudaftarpelajar.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/PenyeliaAddGuru.jsp" afterPath="$PROJECT_DIR$/web/PenyeliaAddGuru.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/gurudaftarpelajar.jsp" afterPath="$PROJECT_DIR$/web/gurudaftarpelajar.jsp" />
-    </list>
+    <list default="true" id="6a4954c1-124b-43f5-b4b7-fd4df5688bf7" name="Default" comment="" />
     <ignored path="Psm.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -43,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gurudaftarpelajar.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gurudaftarpelajar.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/gurudaftarpelajar.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+            <state relative-caret-position="331">
+              <caret line="102" column="45" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
               <folding>
                 <marker date="1494073286539" expanded="true" signature="917:944" ph="select count... login" />
               </folding>
@@ -55,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuruAddPelajar.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GuruAddPelajar.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/ayerputeh/crud/GuruAddPelajar.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="331">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <marker date="1494072977645" expanded="true" signature="733:874" ph="insert into pelajar... " />
@@ -955,12 +946,12 @@
       <workItem from="1493924388092" duration="9375000" />
       <workItem from="1493978699518" duration="3170000" />
       <workItem from="1493987981267" duration="1914000" />
-      <workItem from="1494058074537" duration="7290000" />
+      <workItem from="1494058074537" duration="7548000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184410000" />
+    <option name="totallyTimeSpent" value="184668000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1384" height="786" extended-state="6" />
@@ -1369,24 +1360,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/ayerputeh/crud/GuruAddPelajar.java">
+    <entry file="file://$PROJECT_DIR$/web/gurudaftarpelajar.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <caret line="102" column="45" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1494072977645" expanded="true" signature="733:874" ph="insert into pelajar... " />
-            <marker date="1494072977645" expanded="true" signature="1666:1705" ph="insert into login... " />
+            <marker date="1494073286539" expanded="true" signature="917:944" ph="select count... login" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/gurudaftarpelajar.jsp">
+    <entry file="file://$PROJECT_DIR$/src/com/ayerputeh/crud/GuruAddPelajar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+        <state relative-caret-position="331">
+          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
           <folding>
-            <marker date="1494073286539" expanded="true" signature="917:944" ph="select count... login" />
+            <element signature="imports" expanded="true" />
+            <marker date="1494072977645" expanded="true" signature="733:874" ph="insert into pelajar... " />
+            <marker date="1494072977645" expanded="true" signature="1666:1705" ph="insert into login... " />
           </folding>
         </state>
       </provider>
