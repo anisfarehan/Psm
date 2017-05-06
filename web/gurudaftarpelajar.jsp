@@ -3,9 +3,11 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%--
-    Document   : gurumain page
-    Created on : Nov 16, 2016, 2:37:26 AM
-    Author     : Yang Hp
+  Created by IntelliJ IDEA.
+  User: Hp
+  Date: 4/28/2017
+  Time: 3:05 AM
+  To change this template use File | Settings | File Templates.
 --%>
 <%
 
@@ -13,7 +15,7 @@
 	PreparedStatement pstmt=null;
 	ResultSet rs=null;
 	int count=0;
-	String sid=null,no_ic=null;
+	String sid=null,rid=null;
 	try
 	{
 		//ServletContext sc=getServletContext();
@@ -22,7 +24,7 @@
 		//String uname=sc.getInitParameter("user");
 		//String pwd=sc.getInitParameter("dbpassword");
 		Class.forName("com.mysql.jdbc.Driver");
-		System.out.println("...........3.......");
+		System.out.println("...........09.......");
 		con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
 		pstmt=con.prepareStatement("select count(id) from login");
 		rs=pstmt.executeQuery();
@@ -33,10 +35,8 @@
 
 
 
-
-		sid="Pelajar "+count;
-		no_ic=""+count;
-
+		sid="Pelajar"+count;
+		rid="Subject"+count;
 
 
 	}
@@ -45,6 +45,8 @@
 		e.printStackTrace();
 	}
 %>
+
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

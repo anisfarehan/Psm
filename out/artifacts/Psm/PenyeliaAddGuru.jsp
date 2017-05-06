@@ -98,7 +98,7 @@
                 <section>
                     <label class="label">Guru ID:</label>
                     <label class="input">
-                        <input type="text" name="gid" value=<%=sid%> readonly>
+                        <input type="text" name="sid" value=<%=sid%> readonly>
                     </label>
                 </section>
                 <section>
