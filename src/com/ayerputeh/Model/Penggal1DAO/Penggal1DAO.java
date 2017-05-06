@@ -1,7 +1,6 @@
 package com.ayerputeh.Model.Penggal1DAO;
 
 import com.ayerputeh.GlobalServlet.DBConnectionManager;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,8 @@ public class Penggal1DAO extends DBConnectionManager{
      *******************************/
     private int id;
     public int subjek_id;
-    public float jumlah1;
+    public String jumlah1,no_ic;
+
 
     /******************************
      * DATABASE VARIABLES
@@ -93,7 +93,8 @@ public class Penggal1DAO extends DBConnectionManager{
             // create the mysql insert preparedstatement
             this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (subjek_id, jumlah1) VALUES (?, ?, ?)");
             this.preparedStmt.setInt(1, this.subjek_id);
-            this.preparedStmt.setFloat(2, this.jumlah1);
+            this.preparedStmt.setString(2, this.jumlah1);
+            this.preparedStmt.setString(3, this.no_ic);
 
             // execute the preparedstatement
             this.preparedStmt.execute();
@@ -144,10 +145,11 @@ public class Penggal1DAO extends DBConnectionManager{
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET subjek_id=?, jumlah1=? WHERE id=?");
+            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET subjek_id=?, jumlah1=?, no_ic=? WHERE id=?");
             this.preparedStmt.setInt(1, this.subjek_id);
-            this.preparedStmt.setFloat(2, this.jumlah1);
-            this.preparedStmt.setInt(3, this.id);
+            this.preparedStmt.setString(2, this.jumlah1);
+            this.preparedStmt.setString(3, this.no_ic);
+            this.preparedStmt.setInt(4, this.id);
 
             // execute the preparedstatement
             this.preparedStmt.executeUpdate();
@@ -181,32 +183,33 @@ public class Penggal1DAO extends DBConnectionManager{
     }
 
     //retrive single login from the database
-    public List<Penggal1DAO> findBySubjID(int subjek_id) {
+    public Penggal1DAO findByNRIC(String NRIC) {
         this.isNewRecord = false;
 
         try {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE subjek_id" + "=?");
-            ps.setInt(1, subjek_id);
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE no_ic=? LIMIT 1");
+            ps.setString(1, NRIC);
             this.rs = ps.executeQuery();
 
-            List<Penggal1DAO> penggal1DAOs= new ArrayList<>();
+            Penggal1DAO penggal1DAO= null;
             while (rs.next()) {
-                penggal1DAOs.add(this.processRow(rs));
+                penggal1DAO= this.processRow(rs);
             }
 
             this.conn.close();
 //            return this.logins.get(id - 1);
 
             System.out.print("DATA SELECTED FROM " + this.tableName);
-            return penggal1DAOs;
+            return penggal1DAO;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }
 
     }
+
 
     //retrive list of logins from the database
     public List<Penggal1DAO> getAllKelas() {
@@ -233,7 +236,8 @@ public class Penggal1DAO extends DBConnectionManager{
     protected Penggal1DAO processRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
         this.subjek_id = rs.getInt("subjek_id");
-        this.jumlah1 = rs.getFloat("jumlah1");
+        this.jumlah1 = rs.getString("jumlah1");
+        this.no_ic = rs.getString("no_ic");
         return this;
     }
 }

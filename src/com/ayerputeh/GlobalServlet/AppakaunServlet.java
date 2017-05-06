@@ -28,7 +28,7 @@ public class AppakaunServlet extends HttpServlet {
         pelajarDAO.agama = data.get("agama").getAsString();
         pelajarDAO.warganegara = data.get("warganegara").getAsString();
         pelajarDAO.alamat = data.get("alamat").getAsString();
-        pelajarDAO.update();
+        pelajarDAO.update(); //update form
 
 //        if (loginDAO.password == password) {
         /*
@@ -49,7 +49,7 @@ public class AppakaunServlet extends HttpServlet {
 
         /*response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        response.getWriter().print("{statusMsg: 'error'}");
+        response.getWriter().print("{responseStatus: 'error'}");
         response.getWriter().flush();*/
 
     }

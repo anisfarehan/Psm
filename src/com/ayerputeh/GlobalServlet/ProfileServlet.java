@@ -1,6 +1,7 @@
 package com.ayerputeh.GlobalServlet;
 
-import com.ayerputeh.Model.Penggal1DAO.Penggal1DAO;
+import com.ayerputeh.Model.LoginDAO.LoginDAO;
+import com.ayerputeh.Model.PelajarDAO.PelajarDAO;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -14,16 +15,16 @@ import java.io.IOException;
 /**
  * Created by Hp on 5/6/2017.
  */
-@WebServlet("/AppviewresultServlet")
-public class AppviewresultServlet extends HttpServlet {
+@WebServlet("/ProfileServlet")
+public class ProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(request.getReader(), JsonObject.class);
         String no_ic = data.get("no_ic").getAsString();
 
-        Penggal1DAO penggal1DAO= new Penggal1DAO().findByNRIC(no_ic);
+        PelajarDAO pelajarDAO = new PelajarDAO().findByNRIC(no_ic);
 
         Gson gson = new Gson();
-        String json = gson.toJson(penggal1DAO);
+        String json = gson.toJson(pelajarDAO);
 
 
         response.setContentType("application/json");

@@ -3,11 +3,12 @@ package com.ayerputeh.GlobalServlet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 import com.mysql.jdbc.Driver;
 
 /**
  * Created by  on 01-Apr-17.
- *
+ * <p>
  * http://stackoverflow.com/questions/10915375/create-a-class-to-connect-to-any-database-using-jdbc
  */
 public class DBConnectionManager {
@@ -17,7 +18,7 @@ public class DBConnectionManager {
     private static String password = "";
     private static Connection con;
 
-    public DBConnectionManager(){
+    public DBConnectionManager() {
 
     }
 
