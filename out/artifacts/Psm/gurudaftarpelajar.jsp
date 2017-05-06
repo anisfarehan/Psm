@@ -24,7 +24,7 @@
 		//String uname=sc.getInitParameter("user");
 		//String pwd=sc.getInitParameter("dbpassword");
 		Class.forName("com.mysql.jdbc.Driver");
-		System.out.println("...........3.......");
+		System.out.println("...........09.......");
 		con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
 		pstmt=con.prepareStatement("select count(id) from login");
 		rs=pstmt.executeQuery();
