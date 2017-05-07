@@ -1,7 +1,3 @@
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
 <%--
   Created by IntelliJ IDEA.
   User: Hp
@@ -9,42 +5,6 @@
   Time: 3:05 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%
-
-    Connection con=null;
-    PreparedStatement pstmt=null;
-    ResultSet rs=null;
-    int count=0;
-    String sid=null,rid=null;
-    try
-    {
-        //ServletContext sc=getServletContext();
-        //String driver=sc.getInitParameter("driver");
-        //String url=sc.getInitParameter("url");
-        //String uname=sc.getInitParameter("user");
-        //String pwd=sc.getInitParameter("dbpassword");
-        Class.forName("com.mysql.jdbc.Driver");
-        System.out.println("...........3.......");
-        con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
-        pstmt=con.prepareStatement("select count(id) from login");
-        rs=pstmt.executeQuery();
-        while(rs.next())
-        {
-            count=rs.getInt(1)+1;
-        }
-
-
-
-        sid="Guru"+count;
-        rid="Subject"+count;
-
-
-    }
-    catch(Exception e)
-    {
-        e.printStackTrace();
-    }
-%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -91,14 +51,14 @@
 
     </div><!-- sidebar -->
     <div id="content">
-        <form action="PenyeliaAddGuru" class="sky-form" method="post">
+        <form action="AddCikguServlet" class="sky-form" method="post">
             <header>Kemasukkan guru baharu</header>
 
             <fieldset>
                 <section>
                     <label class="label">Guru ID:</label>
                     <label class="input">
-                        <input type="text" name="sid" value=<%=sid%> readonly>
+                        <input type="text" name="sid">
                     </label>
                 </section>
                 <section>
@@ -117,7 +77,7 @@
                 <section>
                     <label class="label">Tenaga Pengajar Subjek:</label>
                     <label class="input">
-                        <input type="text" name="subjek_id" value=<%=rid%> readonly>
+                        <input type="text" name="subjek_id">
                     </label>
                 </section>
                 <section>
@@ -136,7 +96,7 @@
             </fieldset>
 
             <footer>
-                <button type="submit" class="button">Tambah</button>
+                <button type="submit" class="button">Seterusnya</button>
                 <button type="button" class="button button-secondary" onclick="window.history.back();">Padam</button>
             </footer>
         </form>

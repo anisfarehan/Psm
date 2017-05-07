@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ayerputeh.Model.LoginDAO.LoginDAO;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 /**
- * Created by Mizan on 01-Apr-17.
+ * Created by hp yang on 01-Apr-17.
  */
 @WebServlet("/PublicServlet")
 public class PublicServlet extends HttpServlet {

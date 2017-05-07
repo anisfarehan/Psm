@@ -97,10 +97,13 @@ public class LoginDAO extends DBConnectionManager {
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (number_ic, password, status) VALUES (?, ?, ?)");
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (number_ic, password, status,nama,guru,penyelia) VALUES (?, ?, ?, ?, ?, ?)");
             this.preparedStmt.setString(1, this.number_ic);
             this.preparedStmt.setString(2, this.password);
             this.preparedStmt.setString(3, this.status);
+            this.preparedStmt.setString(4, this.nama);
+            this.preparedStmt.setString(5, this.guru);
+            this.preparedStmt.setString(6, this.penyelia);
 
             // execute the preparedstatement
             this.preparedStmt.execute();

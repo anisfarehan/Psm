@@ -17,8 +17,7 @@ public class AktivitiDAO extends DBConnectionManager{
      * TABLE COLUMN NAME
      *******************************/
     private int id;
-    public String aktivitinama, huraian;
-    public int tarikh;
+    public String aktivitinama, huraian,tarikh;
 
     /******************************
      * DATABASE VARIABLES
@@ -91,9 +90,9 @@ public class AktivitiDAO extends DBConnectionManager{
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (aktivitinama, tarikh, huraian) VALUES (?, ?, ?, ?)");
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (aktivitinama, tarikh, huraian) VALUES (?, ?, ?)");
             this.preparedStmt.setString(1, this.aktivitinama);
-            this.preparedStmt.setInt(2, this.tarikh);
+            this.preparedStmt.setString(2, this.tarikh);
             this.preparedStmt.setString(3, this.huraian);
 
             // execute the preparedstatement
@@ -147,7 +146,7 @@ public class AktivitiDAO extends DBConnectionManager{
 
             this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET aktivitinama=?, tarikh=?, huraian=? WHERE id=?");
             this.preparedStmt.setString(1, this.aktivitinama);
-            this.preparedStmt.setInt(2, this.tarikh);
+            this.preparedStmt.setString(2, this.tarikh);
             this.preparedStmt.setString(3, this.huraian);
             this.preparedStmt.setInt(4, this.id);
 
@@ -235,7 +234,7 @@ public class AktivitiDAO extends DBConnectionManager{
     protected AktivitiDAO processRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
         this.aktivitinama = rs.getString("aktivitinama");
-        this.tarikh = rs.getInt("tarikh");
+        this.tarikh = rs.getString("tarikh");
         this.huraian = rs.getString("huraian");
         return this;
     }

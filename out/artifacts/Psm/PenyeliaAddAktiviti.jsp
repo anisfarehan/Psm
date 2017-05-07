@@ -8,39 +8,6 @@
     Author     : Yang Hp
 --%>
 
-<%
-
-    Connection con=null;
-    PreparedStatement pstmt=null;
-    ResultSet rs=null;
-    int count=0;
-    String aid=null,rid=null;
-    try
-    {
-        Class.forName("com.mysql.jdbc.Driver");
-        System.out.println("...........3.......");
-        con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
-        pstmt=con.prepareStatement("select count(id) from aktiviti");
-        rs=pstmt.executeQuery();
-        while(rs.next())
-        {
-            count=rs.getInt(1)+1;
-        }
-
-
-
-        aid=""+count;
-        rid=""+count;
-
-
-    }
-    catch(Exception e)
-    {
-        e.printStackTrace();
-    }
-%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -88,7 +55,7 @@
 
     </div><!-- sidebar -->
     <div id="content">
-        <form action="PenyeliaAddAktiviti" class="sky-form" method="post">
+        <form action="AddAktivitiServlet" class="sky-form" method="post">
             <header>Tambah Aktiviti Baharu</header>
 
             <fieldset>
@@ -123,7 +90,7 @@
             </fieldset>
 
             <footer>
-                <button type="submit" class="button">Daftar</button>
+                <button type="submit" class="button">Penambahan Aktiviti</button>
                 <button type="button" class="button button-secondary" onclick="window.history.back();">Kembali</button>
             </footer>
         </form>

@@ -92,7 +92,7 @@ public class PelajarDAO extends DBConnectionManager{
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (pelajarnama, no_ic, namaibu, namabapa, agama, warganegara, kelas_id, alamat, poskod, negeri) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?)");
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (pelajarnama, no_ic, namaibu, namabapa, agama, warganegara, kelas_id, alamat, poskod, negeri) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
             this.preparedStmt.setString(1, this.pelajarnama);
             this.preparedStmt.setString(2, this.no_ic);
             this.preparedStmt.setString(3, this.namaibu);
@@ -106,9 +106,11 @@ public class PelajarDAO extends DBConnectionManager{
 
             // execute the preparedstatement
             this.preparedStmt.execute();
+            //int n=this.preparedStmt.executeUpdate();
             this.conn.close();
 
             System.out.print("DATA CREATED FROM " + this.tableName);
+
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }

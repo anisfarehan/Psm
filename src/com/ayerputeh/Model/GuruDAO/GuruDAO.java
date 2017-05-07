@@ -16,8 +16,7 @@ public class GuruDAO extends DBConnectionManager{
      * TABLE COLUMN NAME
      *******************************/
     private int id;
-    public String gurunama;
-    public int no_ic, subjek_id,kelas_id;
+    public String gurunama,no_ic,subjek_id,kelas_id;
 
     /******************************
      * DATABASE VARIABLES
@@ -90,11 +89,11 @@ public class GuruDAO extends DBConnectionManager{
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement add data masuk dalam database
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (gurunama, no_ic, subjek_id,kelas_id) VALUES (?, ?, ?, ?, ?)");
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (gurunama, no_ic, subjek_id,kelas_id) VALUES (?, ?, ?, ?)");
             this.preparedStmt.setString(1, this.gurunama);
-            this.preparedStmt.setInt(2, this.no_ic);
-            this.preparedStmt.setInt(3, this.subjek_id);
-            this.preparedStmt.setInt(4, this.kelas_id);
+            this.preparedStmt.setString(2, this.no_ic);
+            this.preparedStmt.setString(3, this.subjek_id);
+            this.preparedStmt.setString(4, this.kelas_id);
 
             // execute the preparedstatement
             this.preparedStmt.execute();
@@ -147,9 +146,9 @@ public class GuruDAO extends DBConnectionManager{
 
             this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET gurunama=?, no_ic=?, subjek_id=?, kelas_id=? WHERE id=?");
             this.preparedStmt.setString(1, this.gurunama);
-            this.preparedStmt.setInt(2, this.no_ic);
-            this.preparedStmt.setInt(3, this.subjek_id);
-            this.preparedStmt.setInt(4, this.kelas_id);
+            this.preparedStmt.setString(2, this.no_ic);
+            this.preparedStmt.setString(3, this.subjek_id);
+            this.preparedStmt.setString(4, this.kelas_id);
 
             // execute the preparedstatement
             this.preparedStmt.executeUpdate();
@@ -212,9 +211,9 @@ public class GuruDAO extends DBConnectionManager{
 
     protected com.ayerputeh.Model.GuruDAO.GuruDAO processRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
-        this.no_ic = rs.getInt("no_ic");
-        this.subjek_id = rs.getInt("subjek_id");
-        this.kelas_id = rs.getInt("kelas_id");
+        this.no_ic = rs.getString("no_ic");
+        this.subjek_id = rs.getString("subjek_id");
+        this.kelas_id = rs.getString("kelas_id");
         this.gurunama = rs.getString("gurunama");
         return this;
     }

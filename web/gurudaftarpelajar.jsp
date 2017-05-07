@@ -1,7 +1,3 @@
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
 <%--
   Created by IntelliJ IDEA.
   User: Hp
@@ -9,43 +5,6 @@
   Time: 3:05 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%
-
-	Connection con=null;
-	PreparedStatement pstmt=null;
-	ResultSet rs=null;
-	int count=0;
-	String sid=null,rid=null;
-	try
-	{
-		//ServletContext sc=getServletContext();
-		//String driver=sc.getInitParameter("driver");
-		//String url=sc.getInitParameter("url");
-		//String uname=sc.getInitParameter("user");
-		//String pwd=sc.getInitParameter("dbpassword");
-		Class.forName("com.mysql.jdbc.Driver");
-		System.out.println("...........09.......");
-		con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ayerputeh?zeroDateTimeBehavior=convertToNull","root","");
-		pstmt=con.prepareStatement("select count(id) from login");
-		rs=pstmt.executeQuery();
-		while(rs.next())
-		{
-			count=rs.getInt(1)+1;
-		}
-
-
-
-		sid="Pelajar"+count;
-		rid="Subject"+count;
-
-
-	}
-	catch(Exception e)
-	{
-		e.printStackTrace();
-	}
-%>
-
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -95,7 +54,7 @@
 
 	</div><!-- sidebar -->
 	<div id="content">
-		<form action="GuruAddPelajar" class="sky-form" method="post">
+		<form action="AddGuruServlet" class="sky-form" method="post">
 			<header>Pendaftaran pelajar baharu</header>
 
 			<fieldset>
@@ -138,10 +97,23 @@
 						<i></i>
 					</label>
 				</section>
+
 				<section>
 					<label class="label">Kaum :</label>
 					<label class="input">
 						<select name="warganegara">
+							<option value="melayu">Melayu</option>
+							<option value="india">India</option>
+							<option value="cina">Cina</option>
+							<option value="lain-lain">Lain-lain</option>
+
+						</select>
+					</label>
+				</section>
+				<section>
+					<label class="label">Kaum :</label>
+					<label class="input">
+						<select name="kelas_id">
 							<option value="melayu">Melayu</option>
 							<option value="india">India</option>
 							<option value="cina">Cina</option>
