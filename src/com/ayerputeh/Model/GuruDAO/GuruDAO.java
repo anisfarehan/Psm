@@ -22,7 +22,7 @@ public class GuruDAO extends DBConnectionManager{
      * DATABASE VARIABLES
      *******************************/
     //list is working as a database
-    private transient List<com.ayerputeh.Model.GuruDAO.GuruDAO> gurus;
+    private transient List<GuruDAO> gurus;
     private transient Connection conn = getConnection();
     private transient Statement stmt = null;
     private transient PreparedStatement preparedStmt = null;
@@ -100,6 +100,7 @@ public class GuruDAO extends DBConnectionManager{
             this.conn.close();
 
             System.out.print("DATA CREATED FROM " + this.tableName);
+
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }

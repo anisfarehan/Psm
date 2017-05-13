@@ -182,7 +182,7 @@ public class AktivitiDAO extends DBConnectionManager{
     }
 
     //retrive single login from the database
-    public List<AktivitiDAO> findByID(int id) {
+    public List<AktivitiDAO> findByID(String id) {
         this.isNewRecord = false;
 
         try {
@@ -190,7 +190,7 @@ public class AktivitiDAO extends DBConnectionManager{
                 this.conn = getConnection();
 
             PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE id=?");
-            ps.setInt(1, id);
+            ps.setString(1, id);
             this.rs = ps.executeQuery();
 
             List<AktivitiDAO> aktivitiDAOs= new ArrayList<>();

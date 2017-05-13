@@ -2,6 +2,7 @@ package com.ayerputeh.Model.PelajarDAO;
 
 import com.ayerputeh.GlobalServlet.DBConnectionManager;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class PelajarDAO extends DBConnectionManager{
     private transient Connection conn = getConnection();
     private transient Statement stmt = null;
     private transient PreparedStatement preparedStmt = null;
-    private transient ResultSet rs = null;
+    private static transient ResultSet rs = null;
 
     public PelajarDAO() {
         this.isNewRecord = true;
@@ -34,34 +35,46 @@ public class PelajarDAO extends DBConnectionManager{
     /******************************
      * ATTRIBUTES/COLUMN SETTER & GETTER
      *******************************/
-  /*  public void setNRIC(String NRIC) {
-        this.number_ic = NRIC;
+    public void setpelajarnama(String pelajarnama) {
+        this.pelajarnama= pelajarnama;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setno_ic(String no_ic) {
+        this.no_ic= no_ic;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setnamaibu(String namaibu) {
+        this.namaibu= namaibu;
+    }
+    public void setnamabapa(String namabapa){
+        this.namabapa=namabapa;
+    }
+    public void setkelas_id(String kelas_id){
+        this.kelas_id=kelas_id;
     }
 
     public int getID() {
         return this.id;
     }
 
-    public String getNRIC() {
-        return this.number_ic;
+    public String getPelajarnama() {
+        return this.pelajarnama;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getNo_ic() {
+        return this.no_ic;
     }
 
-    public String getStatus() {
-        return this.status;
+    public String getNamaibu() {
+        return this.namaibu;
     }
-*/
+    public String getNamabapa(){
+        return this.namabapa;
+    }
+    public String getKelas_id(){
+        return this.kelas_id;
+    }
+
 
     /********************************
      *
@@ -106,7 +119,7 @@ public class PelajarDAO extends DBConnectionManager{
 
             // execute the preparedstatement
             this.preparedStmt.execute();
-            //int n=this.preparedStmt.executeUpdate();
+
             this.conn.close();
 
             System.out.print("DATA CREATED FROM " + this.tableName);
@@ -230,6 +243,7 @@ public class PelajarDAO extends DBConnectionManager{
 
     //retrive list of logins from the database
     public List<PelajarDAO> getAllPelajar() {
+        //List<PelajarDAO> logins=new ArrayList<>();
         try {
             if (this.conn.isClosed())
                 this.conn = getConnection();
@@ -239,6 +253,7 @@ public class PelajarDAO extends DBConnectionManager{
 
             while (rs.next()) {
                 this.logins.add(this.processRow(rs));
+
             }
 
             this.conn.close();
@@ -248,6 +263,28 @@ public class PelajarDAO extends DBConnectionManager{
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }
+    }
+    public static List<PelajarDAO> getAll(){  //class utk view
+        List<PelajarDAO> list=new ArrayList<PelajarDAO>();
+
+        try{
+            Connection con= PelajarDAO.getConnection();
+            PreparedStatement ps=con.prepareStatement("select * from pelajar WHERE kelas_id='arif'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                PelajarDAO e=new PelajarDAO();
+                e.setpelajarnama(rs.getString(2));
+                e.setno_ic(rs.getString(3));
+                e.setnamaibu(rs.getString(4));
+                e.setnamabapa(rs.getString(5));
+                e.setkelas_id(rs.getString(8));
+
+                list.add(e);
+            }
+            con.close();
+        }catch(Exception e){e.printStackTrace();}
+
+        return list;
     }
 
     protected PelajarDAO processRow(ResultSet rs) throws SQLException {

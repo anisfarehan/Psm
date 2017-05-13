@@ -42,32 +42,25 @@
         </div>
 
     </div><!-- sidebar -->
-    <div id="content"><%@ page import="com.ayerputeh.Controller.Aktiviti.Aktiviti" %>
-        <%@ page import="com.ayerputeh.Model.AktDAO.AktDAO" %>
-        <%@ page import="java.util.List" %>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+    <div id="content">
         <header>Senarai Pelajar</header>
 
-        <%
-            List<Aktiviti> list= AktDAO.getAllAktiviti();
-            request.setAttribute("list",list);
-        %>
+
 
         <table border="0" width="90%">
             <tr><th>Id</th><th>Nama Pelajar</th><th>Kad Pengenalan</th><th>Kelas</th><th></th><th></th></tr>
-            <c:forEach items="${list}" var="e">
+
                 <tr><td>
-                    <label class="label">${e.getId()}</label>
+                    <label class="label"><%=%></label>
 
                 </td>
-                    <td><label class="label">${e.getAktivitinama()}</label></td>
-                    <td><label class="label">${e.getTarikh()}</label> </td>
-                    <td><label class="label">${e.getHuraian()}</label> </td>
-                    <td><a href="Penyeliadetailedit.jsp?id=${e.getId()}">Maklumat Lanjut</a></td>
-                    <td><a href="deleteuser.jsp?id=${e.getId()}">Padam</a></td>
+                    <td><label class="label"></label></td>
+                    <td><label class="label"></label> </td>
+                    <td><label class="label"></label> </td>
+                    <td><a href="Penyeliadetailedit.jsp?id=">Maklumat Lanjut</a></td>
+                    <td><a href="deleteuser.jsp?id=">Padam</a></td>
                 </tr>
-            </c:forEach>
+
         </table>
     </div><!-- post -->
 </div><!-- content -->

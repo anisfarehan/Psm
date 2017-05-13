@@ -56,20 +56,29 @@
         <%@ page import="com.ayerputeh.Controller.emp.Emp" %>
         <%@ page import="com.ayerputeh.Model.empdao.EmpDao" %>
         <%@ page import="java.util.List" %>
+        <%@ page import="com.ayerputeh.Model.PelajarDAO.PelajarDAO" %>
+        <%@ page import="java.util.ArrayList" %>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
         <header>Senarai Pelajar</header>
 
         <%
-            List<Emp> list= EmpDao.getAllEmployees();
-            request.setAttribute("list",list);
+              List<Emp> list= EmpDao.getAllEmployees();
+              request.setAttribute("list",list);
+
+            /*List<LoginDAO> loginDAOs = new ArrayList<>();
+        loginDAOs.add(loginDAO);
+        loginDAOs.add(loginDAO2);*/
+        ////e.getpelajarnama()
+            //List<PelajarDAO> pelajarDAOs=new ArrayList<>();
+            //request.setAttribute("list",pelajarDAOs);
         %>
 
         <table border="0" width="90%">
             <tr><th>Id</th><th>Nama Pelajar</th><th>Kad Pengenalan</th><th>Kelas</th><th></th><th></th></tr>
             <c:forEach items="${list}" var="e">
                 <tr><td>
-                    <label class="label">${e.getId()}</label>
+                    <label class="label"></label>
 
                 </td>
                     <td><label class="label">${e.getpelajarnama()}</label></td>

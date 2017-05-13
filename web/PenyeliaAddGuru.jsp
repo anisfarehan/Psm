@@ -35,7 +35,7 @@
         </div><!-- menu -->
     </div><!-- header -->
     <img id="introimg" src="images/Picture1.gif" width="90" height="70" alt="" />
-    <h3><%=session.getAttribute("status")%> <%=session.getAttribute("nama")%> <%=session.getAttribute("number_ic")%></h3>
+    <h3><%=session.getAttribute("status")%> Farah Wahida Binti Muhammad Fakihi <%=session.getAttribute("nama")%> <%=session.getAttribute("number_ic")%></h3>
     <div id="main">
         <div id="sidebar">
             <h2>Misi KPM</h2>
@@ -55,12 +55,7 @@
             <header>Kemasukkan guru baharu</header>
 
             <fieldset>
-                <section>
-                    <label class="label">Guru ID:</label>
-                    <label class="input">
-                        <input type="text" name="sid">
-                    </label>
-                </section>
+
                 <section>
                     <label class="label">Nama Guru :</label>
                     <label class="input">
@@ -84,10 +79,10 @@
                     <label class="label">Guru Kelas :</label>
                     <label class="input">
                         <select name="kelas_id">
-                            <option value="1">Arif</option>
-                            <option value="2">Bistari</option>
-                            <option value="3">Cerdik</option>
-                            <option value="4">Dahlia</option>
+                            <option value="arif">Arif</option>
+                            <option value="bistari">Bistari</option>
+                            <option value="cerdik">Cerdik</option>
+                            <option value="dahlia">Dahlia</option>
 
                         </select>
                     </label>

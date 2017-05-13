@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+import com.ayerputeh.Model.LoginDAO.LoginDAO;
+import com.ayerputeh.Model.PelajarDAO.PelajarDAO;
 import com.google.gson.Gson;
 
 /**
@@ -19,19 +20,21 @@ import com.google.gson.Gson;
 @WebServlet("/PublicServlet")
 public class PublicServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        /*String no_ic = request.getParameter("no_ic");
-        String password = request.getParameter("password");
+        //String no_ic = request.getParameter("no_ic");
+        //String password = request.getParameter("password");
 
         //login model
-        LoginDAO loginDAO = new LoginDAO().read(1 *//*Primary Key 1*//*);
+      /* LoginDAO loginDAO = new LoginDAO().read(1);   //(1 /*Primary Key 1*///);
+       /*response.getWriter().print(loginDAO.number_ic);*/
 
-        Gson gson = new Gson();
-        String json = gson.toJson(loginDAO);
+                  //Gson gson = new Gson();
 
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().print(json);
-        response.getWriter().flush();*/
+        //String json = gson.toJson(loginDAO);
+
+        //response.setContentType("application/json");
+        //response.setCharacterEncoding("UTF-8");
+        //response.getWriter().print(json);
+        //response.getWriter().flush();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,8 +50,9 @@ public class PublicServlet extends HttpServlet {
         loginDAO.create();*/
 
         //SELECT login model
-        /*LoginDAO loginDAO = new LoginDAO().read(1*//*Primary Key 1*//*);
-        response.getWriter().print(loginDAO.number_ic);*/
+        //LoginDAO loginDAO = new LoginDAO().read(1);    //(1/*Primary Key 1*///);
+        //response.getWriter().print(loginDAO.number_ic);
+
 
         //SELECT and UPDATE login model
         /*LoginDAO loginDAO = new LoginDAO().read(2*//*Primary Key 1*//*);
@@ -69,13 +73,13 @@ public class PublicServlet extends HttpServlet {
         /*
         * convert object to JSON
         * */
-        /*Gson gson = new Gson();
-        String json = gson.toJson(loginDAO);*/
+//        Gson gson = new Gson();
+  //     String json = gson.toJson(pelajarDAO);
 
         /*
         * response the JSON
         * */
-        /*response.setContentType("application/json");
+     /*    response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().print(json);
         response.getWriter().flush();*/

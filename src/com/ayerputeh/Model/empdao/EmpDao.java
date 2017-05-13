@@ -170,7 +170,7 @@ public class EmpDao {
           
         try{  
             Connection con= EmpDao.getConnection();
-            PreparedStatement ps=con.prepareStatement("select * from pelajar");  
+            PreparedStatement ps=con.prepareStatement("select * from pelajar WHERE kelas_id='arif'");
             ResultSet rs=ps.executeQuery();  
             while(rs.next()){  
                 Emp e=new Emp();

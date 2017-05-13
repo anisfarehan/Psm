@@ -17,8 +17,8 @@ public class KelasDAO extends DBConnectionManager{
      * TABLE COLUMN NAME
      *******************************/
     private int id;
-    public String kelasnama;
-    public int guru_id;
+    public String kelasnama,guru_id;
+
 
     /******************************
      * DATABASE VARIABLES
@@ -91,9 +91,9 @@ public class KelasDAO extends DBConnectionManager{
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (kelasnama, guru_id) VALUES (?, ?, ?)");
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (kelasnama, guru_id) VALUES (?, ?)");
             this.preparedStmt.setString(1, this.kelasnama);
-            this.preparedStmt.setInt(2, this.guru_id);
+            this.preparedStmt.setString(2, this.guru_id);
 
             // execute the preparedstatement
             this.preparedStmt.execute();
@@ -146,7 +146,7 @@ public class KelasDAO extends DBConnectionManager{
 
             this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET kelasnama=?, guru_id=? WHERE id=?");
             this.preparedStmt.setString(1, this.kelasnama);
-            this.preparedStmt.setInt(2, this.guru_id);
+            this.preparedStmt.setString(2, this.guru_id);
             this.preparedStmt.setInt(3, this.id);
 
             // execute the preparedstatement
@@ -181,7 +181,7 @@ public class KelasDAO extends DBConnectionManager{
     }
 
     //retrive single login from the database
-    public List<KelasDAO> findByGuruID(int guru_id) {
+    public List<KelasDAO> findByGuruID(String guru_id) {
         this.isNewRecord = false;
 
         try {
@@ -189,7 +189,7 @@ public class KelasDAO extends DBConnectionManager{
                 this.conn = getConnection();
 
             PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE guru_id=?");
-            ps.setInt(1, guru_id);
+            ps.setString(1, guru_id);
             this.rs = ps.executeQuery();
 
             List<KelasDAO> kelasDAOs = new ArrayList<>();
@@ -232,8 +232,8 @@ public class KelasDAO extends DBConnectionManager{
 
     protected KelasDAO processRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
-        this.kelasnama = rs.getString("number_ic");
-        this.guru_id = rs.getInt("password");
+        this.kelasnama = rs.getString("kelasnama");
+        this.guru_id = rs.getString("guru_id");
         return this;
     }
 }

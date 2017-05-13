@@ -16,9 +16,7 @@ public class SubjekDAO extends DBConnectionManager  {
      * TABLE COLUMN NAME
      *******************************/
     private  int id;
-    public String subjeknama;
-    public int kelas_id, guru_id;
-
+    public String subjeknama, guru_id,kelasid;
     /******************************
      * DATABASE VARIABLES
      *******************************/
@@ -41,12 +39,13 @@ public class SubjekDAO extends DBConnectionManager  {
         this.subjeknama= subjeknama;
     }
 
-    public void setKelasID(int kelas_id) {
+    public void setKelasID(String kelasid) {
 
-        this.kelas_id = kelas_id;
+        this.kelasid = kelasid;
     }
 
-    public void setGuruID(int guru_id) {
+    public void setGuruID(String guru_id) {
+
         this.guru_id = guru_id;
     }
     public String getSubjeknama() {
@@ -54,12 +53,12 @@ public class SubjekDAO extends DBConnectionManager  {
         return this.subjeknama;
     }
 
-    public int getKelas_id() {
+    public String getKelasid() {
 
-        return this.kelas_id;
+        return this.kelasid;
     }
 
-    public int getGuru_id() {
+    public String getGuru_id() {
 
         return this.guru_id;
     }
@@ -93,10 +92,10 @@ public class SubjekDAO extends DBConnectionManager  {
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (subjeknama, kelas_id, guru_id) VALUES (?, ?, ?, ?)");
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (subjeknama, guru_id, kelasid) VALUES (?, ?, ?)");
             this.preparedStmt.setString(1, this.subjeknama);
-            this.preparedStmt.setInt(2, this.kelas_id);
-            this.preparedStmt.setInt(3, this.guru_id);
+            this.preparedStmt.setString(2, this.guru_id);
+            this.preparedStmt.setString(3, this.kelasid);
 
             // execute the preparedstatement
             this.preparedStmt.execute();
@@ -147,10 +146,10 @@ public class SubjekDAO extends DBConnectionManager  {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET subjeknama=?, kelas_id=?, guru_id=? WHERE id=?");
+            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET subjeknama=?, guru_id=?,kelas_id=?  WHERE id=?");
             this.preparedStmt.setString(1, this.subjeknama);
-            this.preparedStmt.setInt(2, this.kelas_id);
-            this.preparedStmt.setInt(3, this.guru_id);
+            this.preparedStmt.setString(2, this.guru_id);
+            this.preparedStmt.setString(3, this.kelasid);
             this.preparedStmt.setInt(4, this.id);
 
             // execute the preparedstatement
@@ -192,7 +191,7 @@ public class SubjekDAO extends DBConnectionManager  {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE number_ic=? LIMIT 1");
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE guru_id=? LIMIT 1");
             ps.setInt(1, guru_id);
             this.rs = ps.executeQuery();
 
@@ -237,8 +236,8 @@ public class SubjekDAO extends DBConnectionManager  {
     protected SubjekDAO processRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
         this.subjeknama = rs.getString("subjeknama");
-        this.kelas_id = rs.getInt("kelas_id");
-        this.guru_id = rs.getInt("guru_id");
+        this.guru_id= rs.getString("guru_id");
+        this.kelasid= rs.getString("kelasid");
         return this;
     }
 }

@@ -5,7 +5,6 @@
   Time: 3:05 AM
   To change this template use File | Settings | File Templates.
 --%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,7 +16,6 @@
     <meta http-equiv="content-language" content="" />
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
 <% String message = (String)request.getAttribute("alertMsg");%>
@@ -41,7 +39,7 @@
         </div><!-- menu -->
     </div><!-- header -->
     <img id="introimg" src="images/Picture1.gif" width="90" height="70" alt="" />
-    <h3><%=session.getAttribute("status")%> <%=session.getAttribute("nama")%> <%=session.getAttribute("number_ic")%></h3>
+    <h3><%=session.getAttribute("status")%> Farah Wahida Binti Muhammad Fakihi <%=session.getAttribute("nama")%> <%=session.getAttribute("number_ic")%></h3>
     <div id="main">
         <div id="sidebar">
             <h2>Misi KPM</h2>
@@ -57,18 +55,11 @@
 
     </div><!-- sidebar -->
     <div id="content">
-
-
         <form action="AddCikguServlet" class="sky-form" method="post">
             <header>Kemasukkan guru baharu</header>
 
             <fieldset>
-                <section>
-                    <label class="label">Guru ID:</label>
-                    <label class="input">
-                        <input type="text" name="sid">
-                    </label>
-                </section>
+
                 <section>
                     <label class="label">Nama Guru :</label>
                     <label class="input">
@@ -92,10 +83,10 @@
                     <label class="label">Guru Kelas :</label>
                     <label class="input">
                         <select name="kelas_id">
-                            <option value="1">Arif</option>
-                            <option value="2">Bistari</option>
-                            <option value="3">Cerdik</option>
-                            <option value="4">Dahlia</option>
+                            <option value="arif">Arif</option>
+                            <option value="bistari">Bistari</option>
+                            <option value="cerdik">Cerdik</option>
+                            <option value="dahlia">Dahlia</option>
 
                         </select>
                     </label>
@@ -104,7 +95,7 @@
             </fieldset>
 
             <footer>
-                <button type="submit" class="button">Tambah</button>
+                <button type="submit" class="button">Seterusnya</button>
                 <button type="button" class="button button-secondary" onclick="window.history.back();">Padam</button>
             </footer>
         </form>

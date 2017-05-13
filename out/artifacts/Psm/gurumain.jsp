@@ -1,77 +1,160 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<title>Sk.Ayer Puteh</title>
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta http-equiv="content-language" content="" />
-	<link href="style.css" rel="stylesheet" type="text/css" />
-	<link href="http://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Menu Utama Sk.Ayer Puteh</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/shop-homepage.css" rel="stylesheet">
+
+	<!-- Temporary navbar container fix -->
+	<style>
+		.navbar-toggler {
+			z-index: 1;
+		}
+
+		@media (max-width: 576px) {
+			nav > .container {
+				width: 100%;
+			}
+		}
+		/* Temporary fix for img-fluid sizing within the carousel */
+
+		.carousel-item.active,
+		.carousel-item-next,
+		.carousel-item-prev {
+			display: block;
+		}
+	</style>
+
 </head>
+
 <body>
-<div id="page">
-	<div id="header">
-		<div id="menu">
-			<ul>
-				<li class="active"><a href="gurumain.jsp">Menu Utama</a></li>
-				<li><a href="ViewServlet">Senarai Pelajar</a></li>
-				<li><a href="gurudaftarpelajar.jsp">Pendaftaran Pelajar</a></li>
-				<li><a href="EditServlet">Rekod Akademik</a></li>
-				<li><a href="AktivityServlet">Aktiviti Sekolah</a></li>
-				<li><a href="AkaunServlet">Akaun</a></li>
-				<li><a href="logout.jsp">Log Keluar</a></li>
 
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="container">
+		<a class="navbar-brand" href="#"><%=session.getAttribute("status")%> Muhammad Fakihi Yusof <%=session.getAttribute("number_ic")%></a>
+		<div class="collapse navbar-collapse" id="navbarExample">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="guruchangepass.jsp">Akaun<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Aktiviti</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Akademik
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+						<a class="dropdown-item" href="gurupenggal1.jsp">Penggal 1</a>
+						<a class="dropdown-item" href="gurupenggal2.jsp">Penggal 2</a>
+						<a class="dropdown-item" href="gurufinal.jsp">Peperiksaan Akhir</a>
+
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Pelajar
+				</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+					<a class="dropdown-item" href="gurudaftarpelajar.jsp">Daftar Pelajar</a>
+					<a class="dropdown-item" href="guruviewpelajar.jsp">Senarai Pelajar Kelas</a>
+
+				</div>
+			</li>
+				<li class="nav-item">
+					<a class="nav-link" href="logout.jsp">Keluar</a>
+				</li>
 			</ul>
-		</div><!-- menu -->
-	</div><!-- header -->
-	<img id="introimg" src="images/Picture1.gif" width="90" height="70" alt="" />
-	<h3><%=session.getAttribute("status")%>  <%=session.getAttribute("nama")%>   <%=session.getAttribute("number_ic")%></h3>
-	<div id="main">
-		<div id="sidebar">
-			<h2>Misi KPM</h2>
-			<div class="box">
-				<p>MEMBANGUNKAN SISTEM PENDIDIKAN BERKUALITI YANG BERTARAF DUNIA BAGI MEMPERKEMBANGKAN POTENSI INDIVIDU SEPENUHNYA DAN MEMENUHI ASPIRASI NEGARA MALAYSIA</p>
-			</div>
-			<h2>Visi Sekolah</h2>
-			<div class="box1">
-				<p><div class="box1">
-				<p>MEMBANGUNKAN SISTEM PENDIDIKAN BERKUALITI YANG BERTARAF DUNIA BAGI MEMPERKEMBANGKAN POTENSI INDIVIDU SEPENUHNYA DAN MEMENUHI ASPIRASI NEGARA MALAYSIA</p>
-			</div></p>
 		</div>
+	</div>
+</nav>
 
-	</div><!-- sidebar -->
-	<div id="content">
-		<div class="post">
-			<h22>Makluman Aktiviti</h22>
-			<p></p>
-			<div class="entry">
-				<p>Sambutan Sukan Di Disekolah:
-				   Melibatkan pelajar yang menyertai sukan peringkat sekolah
-				   ... <a href="#">more detail</a></p>
+<!-- Page Content -->
+<div class="container">
+
+	<div class="row">
+
+		<div class="col-lg-3">
+
+			<h1 class="my-4">S.K.Ayer Puteh</h1>
+			<div class="list-group">
+				<a href="guruviewpelajar.jsp" class="list-group-item">Pelajar</a>
+				<a href="guruviewaktiviti.jsp" class="list-group-item">Aktiviti</a>
+				<a href="guruchangepass.jsp" class="list-group-item">Akaun</a>
 			</div>
-			<div class="entry1">
-				<p>Hari Graduasi:
-					Melibatkan pelajar darjah 6
-					... <a href="#">more detail</a></p>
-			</div>
-			<div class="box">
-				<img id="introimg" src="images/sukan.jpeg" width="90" height="70" alt="" />
-			</div>
-			<div class="box1">
-				<img src="images/pic02.jpg" alt=""/>
-			</div>
-		</div><!-- post -->
-		<div class="post">
+
 		</div>
-	</div><!-- post -->
-</div><!-- content -->
-<div class="clearing">&nbsp;</div>
-</div><!-- main -->
-<div id="footer">
-	<p>&copy;SK.Ayer Puteh. All rights reserved.</p>
+		<!-- /.col-lg-3 -->
+
+		<div class="col-lg-9">
+
+			<div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="carousel-item active">
+						<img class="d-block img-fluid" height="50" width="550px" src="images/scholl.jpg" alt="First slide">
+					</div>
+					<div class="carousel-item">
+						<img class="d-block img-fluid" src="images/primary-school.jpg" alt="Second slide">
+					</div>
+					<div class="carousel-item">
+						<img class="d-block img-fluid" src="images/sukan.jpeg" alt="Third slide">
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+
+
+			<!-- /.row -->
+
+		</div>
+		<!-- /.col-lg-9 -->
+
+	</div>
+	<!-- /.row -->
+
 </div>
-</div><!-- page -->
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-inverse">
+	<div class="container">
+		<p class="m-0 text-center text-white">Hak Cipta Terpelihara &copy; S.K.Ayer Puteh 2017</p>
+	</div>
+	<!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/tether/tether.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

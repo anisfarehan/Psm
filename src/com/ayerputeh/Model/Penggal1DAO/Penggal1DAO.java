@@ -16,8 +16,7 @@ public class Penggal1DAO extends DBConnectionManager{
      * TABLE COLUMN NAME
      *******************************/
     private int id;
-    public int subjek_id;
-    public String jumlah1,no_ic;
+        public String subjek_id,jumlah1,no_ic;
 
 
     /******************************
@@ -37,33 +36,42 @@ public class Penggal1DAO extends DBConnectionManager{
     /******************************
      * ATTRIBUTES/COLUMN SETTER & GETTER
      *******************************/
-    /*public void setKelasNama(String KelasNama) {
-        this.kelasnama = KelasNama;
+    public void setSubjek_id(String subjek_id)
+    {
+        this.subjek_id= subjek_id;
     }
 
-    public void setGuruID(int guru_id) {
-        this.guru_id = guru_id;
+    public void setJumlah1(String jumlah1)
+    {
+        this.jumlah1= jumlah1;
+    }
+    public void setNo_ic(String no_ic)
+    {
+        this.no_ic= no_ic;
     }
 
-    public int getID() {
+    public int getId()
+    {
         return this.id;
     }
 
-    public String getNRIC() {
-        return this.number_ic;
+    public String getSubjek_id()
+    {
+        return this.subjek_id;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getJumlah1()
+    {
+        return this.jumlah1;
     }
 
-    public String getStatus() {
-        return this.status;
-    }*/
+     public String getNo_ic()
+     {
+        return this.no_ic;
+    }
 
 
     /********************************
-     *
      * IMPLEMENT INTERFACE
      *
      * CRUD Operations
@@ -91,8 +99,8 @@ public class Penggal1DAO extends DBConnectionManager{
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (subjek_id, jumlah1) VALUES (?, ?, ?)");
-            this.preparedStmt.setInt(1, this.subjek_id);
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (subjek_id, jumlah1,no_ic) VALUES (?, ?, ?)");
+            this.preparedStmt.setString(1, this.subjek_id);
             this.preparedStmt.setString(2, this.jumlah1);
             this.preparedStmt.setString(3, this.no_ic);
 
@@ -146,7 +154,7 @@ public class Penggal1DAO extends DBConnectionManager{
                 this.conn = getConnection();
 
             this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET subjek_id=?, jumlah1=?, no_ic=? WHERE id=?");
-            this.preparedStmt.setInt(1, this.subjek_id);
+            this.preparedStmt.setString(1, this.subjek_id);
             this.preparedStmt.setString(2, this.jumlah1);
             this.preparedStmt.setString(3, this.no_ic);
             this.preparedStmt.setInt(4, this.id);
@@ -233,11 +241,36 @@ public class Penggal1DAO extends DBConnectionManager{
         }
     }
 
+    public static List<Penggal1DAO> getAll(){  //class utk view
+        List<Penggal1DAO> list=new ArrayList<Penggal1DAO>();
+
+        try{
+            Connection con= Penggal1DAO.getConnection();
+            PreparedStatement ps=con.prepareStatement("select * from penggal1 WHERE subjek_id='1'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Penggal1DAO e=new Penggal1DAO();
+                e.setSubjek_id(rs.getString(2));
+                e.setJumlah1(rs.getString(3));
+                e.setNo_ic(rs.getString(4));
+
+                list.add(e);
+            }
+            con.close();
+        }catch(Exception e){e.printStackTrace();}
+
+        return list;
+    }
+
     protected Penggal1DAO processRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
-        this.subjek_id = rs.getInt("subjek_id");
+        this.subjek_id = rs.getString("subjek_id");
         this.jumlah1 = rs.getString("jumlah1");
         this.no_ic = rs.getString("no_ic");
+
         return this;
     }
+
+
+
 }
