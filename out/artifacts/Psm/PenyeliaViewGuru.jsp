@@ -5,6 +5,10 @@
   Time: 3:05 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +83,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
                         <a class="dropdown-item" href="PenyeliaAddGuru.jsp">Daftar Guru</a>
-                        <a class="dropdown-item" href="PenyeliaViewGuru.jsp">Senarai Guru</a>
+                        <a class="dropdown-item" href="#">Senarai Guru</a>
 
                     </div>
                 </li>
@@ -108,49 +112,37 @@
         <!-- /.col-lg-3 -->
 
         <div class="col-lg-9">
+            <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+                               url="jdbc:mysql://localhost/ayerputeh"
+                               user="root"  password=""/>
 
-            <form action="AddCikguServlet" class="sky-form" method="post">
-                <header>Kemasukkan guru baharu</header>
+            <sql:query dataSource="${dbsource}" var="result">
+                SELECT * from guru;
+
+            </sql:query>
+            <form action="" class="sky-form" method="post">
+                <header>Kelas : Arif</header>
+
 
                 <fieldset>
+                    <table border="0" width="90%">
+                        <tr><th>Id</th><th>Nama Guru</th><th>Kad Pengenalan</th><th>Kelas</th><th></th><th></th></tr>
+                        <c:forEach items="${result.rows}"  var="row">
+                            <td><input class="text" type="hidden" value="${param.id}"></td>
+                            <td><label class="text" name="gurunama" >${row.gurunama}</label></td>
+                            <td><label class="text" name="no_ic" value="">${row.no_ic}</label></td>
 
-                    <section>
-                        <label class="label">Nama Guru :</label>
-                        <label class="input">
-                            <input type="text" name="gurunama">
-                        </label>
-                    </section>
+                            <td><a href="guruarif2.jsp?id=<c:out value="${row.id}"/>"></a></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
 
-                    <section>
-                        <label class="label">No. Kad Pengenalan :</label>
-                        <label class="input">
-                            <input type="text" name="no_ic" >
-                        </label>
-                    </section>
-                    <section>
-                        <label class="label">Tenaga Pengajar Subjek:</label>
-                        <label class="input">
-                            <input type="text" name="subjek_id">
-                        </label>
-                    </section>
-                    <section>
-                        <label class="label">Guru Kelas :</label>
-                        <label class="input">
-                            <select name="kelas_id">
-                                <option value="arif">Arif</option>
-                                <option value="bistari">Bistari</option>
-                                <option value="cerdik">Cerdik</option>
-                                <option value="dahlia">Dahlia</option>
-
-                            </select>
-                        </label>
-                    </section>
 
                 </fieldset>
 
                 <footer>
-                    <button type="submit" class="button">Seterusnya</button>
-                    <button type="button" class="button button-secondary" onclick="window.history.back();">Padam</button>
+                  <!--  <button type="submit" class="button">Kemaskini</button>
+                    <button type="button" class="button button-secondary" onclick="window.history.back();">Padam</button>-->
                 </footer>
             </form>
 

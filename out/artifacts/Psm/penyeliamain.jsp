@@ -72,7 +72,7 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
 						<a class="dropdown-item" href="PenyeliaAddGuru.jsp">Daftar Guru</a>
-						<a class="dropdown-item" href="#">Senarai Guru</a>
+						<a class="dropdown-item" href="PenyeliaViewGuru.jsp">Senarai Guru</a>
 
 					</div>
 				</li>

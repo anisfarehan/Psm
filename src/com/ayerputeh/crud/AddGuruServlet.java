@@ -7,6 +7,7 @@ import com.ayerputeh.Model.MatematikDAO.MatematikDAO;
 import com.ayerputeh.Model.MelayuDAO.MelayuDAO;
 import com.ayerputeh.Model.PelajarDAO.PelajarDAO;
 import com.ayerputeh.Model.Penggal1DAO.Penggal1DAO;
+import com.ayerputeh.Model.Penggal2DAO.Penggal2DAO;
 import com.ayerputeh.Model.SainsDAO.SainsDAO;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -48,13 +49,24 @@ public class AddGuruServlet extends HttpServlet {
         loginDAO.guru = "";
         loginDAO.penyelia = "";
 
+        Penggal1DAO penggal1DAO = new Penggal1DAO();
+        penggal1DAO.subjek_id = "1";
+        penggal1DAO.no_ic = request.getParameter("no_ic");
+        penggal1DAO.jumlah1="0";
+
+        Penggal2DAO penggal2DAO = new Penggal2DAO();
+        penggal2DAO.subjek_id="1";
+        penggal2DAO.jumlah2 = "0";
+        penggal2DAO.no_ic = request.getParameter("no_ic");
+
 
         pelajarDAO.create();
         loginDAO.create();
+        penggal1DAO.create();
 
 
         request.setAttribute("alertMsg", "Pendaftaran berjaya");
-        RequestDispatcher rd=request.getRequestDispatcher("./gurudaftar1pelajar.jsp");
+        RequestDispatcher rd=request.getRequestDispatcher("./guruviewpelajar.jsp");
         rd.include(request, response);
  }
 

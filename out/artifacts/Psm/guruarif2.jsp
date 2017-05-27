@@ -1,10 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Hp
-  Date: 4/28/2017
-  Time: 3:05 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="css/sky-forms.css" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
 
     <title>Menu Utama Sk.Ayer Puteh</title>
 
@@ -42,6 +43,13 @@
             display: block;
         }
     </style>
+    <script>
+        function confirmGo(m,u) {
+            if ( confirm(m) ) {
+                window.location = u;
+            }
+        }
+    </script>
 
 </head>
 
@@ -53,14 +61,14 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="container">
-        <a class="navbar-brand" href="#"><%=session.getAttribute("status")%> Farah Wahida Binti Muhammad Fakihi <%=session.getAttribute("number_ic")%></a>
+        <a class="navbar-brand" href="#"><%=session.getAttribute("status")%> Muhammad Fakihi Yusof <%=session.getAttribute("number_ic")%></a>
         <div class="collapse navbar-collapse" id="navbarExample">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Akaun<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="PenyeliaAddAktiviti.jsp">Aktiviti</a>
+                    <a class="nav-link" href="#">Aktiviti</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,11 +83,11 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Guru
+                        Pelajar
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                        <a class="dropdown-item" href="PenyeliaAddGuru.jsp">Daftar Guru</a>
-                        <a class="dropdown-item" href="PenyeliaViewGuru.jsp">Senarai Guru</a>
+                        <a class="dropdown-item" href="gurudaftarpelajar.jsp">Daftar Pelajar</a>
+                        <a class="dropdown-item" href="guruviewpelajar.jsp">Senarai Pelajar Kelas</a>
 
                     </div>
                 </li>
@@ -100,6 +108,7 @@
 
             <h1 class="my-4">S.K.Ayer Puteh</h1>
             <div class="list-group">
+                <a href="guruviewpelajar.jsp" class="list-group-item">Pelajar</a>
                 <a href="guruviewaktiviti.jsp" class="list-group-item">Aktiviti</a>
                 <a href="guruakaun.jsp" class="list-group-item">Akaun</a>
             </div>
@@ -108,48 +117,42 @@
         <!-- /.col-lg-3 -->
 
         <div class="col-lg-9">
+            <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+                               url="jdbc:mysql://localhost/ayerputeh"
+                               user="root"  password=""/>
 
-            <form action="AddCikguServlet" class="sky-form" method="post">
-                <header>Kemasukkan guru baharu</header>
+            <sql:query dataSource="${dbsource}" var="result">
+                SELECT * from penggal1 where id=?;
+                <sql:param value="${param.id}" />
+            </sql:query>
+
+            <form action="guruarif1.jsp" class="sky-form" method="post">
+                <header>Kelas : Arif</header>
+
 
                 <fieldset>
+                    <table border="0" width="40%">
+                        <caption>Kemasukan Markah</caption>
+                        <tr>
+                            <th></th>
+                            <th>Kad Pengenalan </th>
+                            <th>Markah</th>
+                        </tr>
+                        <c:forEach var="row" items="${result.rows}">
+                            <tr><th></th>
+                                <td><input class="text" type="hidden" value="${param.id}"></td>
+                                <td><input class="text"  value="${row.no_ic}" name="no_ic"/></td>
+                                <td><input type="text" value="${row.jumlah1}" name="jumlah1"/></td>
 
-                    <section>
-                        <label class="label">Nama Guru :</label>
-                        <label class="input">
-                            <input type="text" name="gurunama">
-                        </label>
-                    </section>
+                               </tr>
+                        </c:forEach>
+                    </table>
 
-                    <section>
-                        <label class="label">No. Kad Pengenalan :</label>
-                        <label class="input">
-                            <input type="text" name="no_ic" >
-                        </label>
-                    </section>
-                    <section>
-                        <label class="label">Tenaga Pengajar Subjek:</label>
-                        <label class="input">
-                            <input type="text" name="subjek_id">
-                        </label>
-                    </section>
-                    <section>
-                        <label class="label">Guru Kelas :</label>
-                        <label class="input">
-                            <select name="kelas_id">
-                                <option value="arif">Arif</option>
-                                <option value="bistari">Bistari</option>
-                                <option value="cerdik">Cerdik</option>
-                                <option value="dahlia">Dahlia</option>
-
-                            </select>
-                        </label>
-                    </section>
 
                 </fieldset>
 
                 <footer>
-                    <button type="submit" class="button">Seterusnya</button>
+                    <button type="submit" class="button">Kemaskini</button>
                     <button type="button" class="button button-secondary" onclick="window.history.back();">Padam</button>
                 </footer>
             </form>
@@ -181,4 +184,3 @@
 </body>
 
 </html>
-

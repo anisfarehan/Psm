@@ -1,16 +1,27 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Hp
-  Date: 5/13/2017
-  Time: 10:24 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JSP Page</title>
 </head>
 <body>
+<sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+                   url="jdbc:mysql://localhost/ayerputeh"
+                   user="root"  password=""/>
+<sql:update dataSource="${dbsource}" var="count">
+    UPDATE penggal1 SET jumlah1=?
+    WHERE id='${param.id}'
 
+    <sql:param value="${param.jumlah1}" />
+</sql:update>
+<c:if test="${count>=1}">
+    <font size="5" color='green'> Congratulations ! Data updated
+        successfully.</font>
+    <a href="index.jsp">Kembali</a>
+</c:if>
 </body>
 </html>

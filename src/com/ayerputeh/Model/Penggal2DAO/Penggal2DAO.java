@@ -1,6 +1,7 @@
 package com.ayerputeh.Model.Penggal2DAO;
 
 import com.ayerputeh.GlobalServlet.DBConnectionManager;
+import com.ayerputeh.Model.Penggal1DAO.Penggal1DAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by Hp on 4/5/2017.
  */
-public class Penggal2DAO extends DBConnectionManager {
+public class Penggal2DAO extends DBConnectionManager{
     protected transient boolean isNewRecord = true;
     protected transient String tableName = "penggal2";
 
@@ -17,8 +18,8 @@ public class Penggal2DAO extends DBConnectionManager {
      * TABLE COLUMN NAME
      *******************************/
     private int id;
-    public float jumlah2;
-    public int subjek_id;
+    public String subjek_id,jumlah2,no_ic;
+
 
     /******************************
      * DATABASE VARIABLES
@@ -37,33 +38,42 @@ public class Penggal2DAO extends DBConnectionManager {
     /******************************
      * ATTRIBUTES/COLUMN SETTER & GETTER
      *******************************/
-    /*public void setKelasNama(String KelasNama) {
-        this.kelasnama = KelasNama;
+    public void setSubjek_id(String subjek_id)
+    {
+        this.subjek_id= subjek_id;
     }
 
-    public void setGuruID(int guru_id) {
-        this.guru_id = guru_id;
+    public void setJumlah2(String jumlah2)
+    {
+        this.jumlah2= jumlah2;
+    }
+    public void setNo_ic(String no_ic)
+    {
+        this.no_ic= no_ic;
     }
 
-    public int getID() {
+    public int getId()
+    {
         return this.id;
     }
 
-    public String getNRIC() {
-        return this.number_ic;
+    public String getSubjek_id()
+    {
+        return this.subjek_id;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getJumlah2()
+    {
+        return this.jumlah2;
     }
 
-    public String getStatus() {
-        return this.status;
-    }*/
+    public String getNo_ic()
+    {
+        return this.no_ic;
+    }
 
 
     /********************************
-     *
      * IMPLEMENT INTERFACE
      *
      * CRUD Operations
@@ -91,9 +101,10 @@ public class Penggal2DAO extends DBConnectionManager {
                 this.conn = getConnection();
 
             // create the mysql insert preparedstatement
-            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (subjek_id, jumlah2) VALUES (?, ?, ?)");
-            this.preparedStmt.setInt(1, this.subjek_id);
-            this.preparedStmt.setFloat(2, this.jumlah2);
+            this.preparedStmt = this.conn.prepareStatement("INSERT INTO " + this.tableName + " (subjek_id, jumlah2,no_ic) VALUES (?, ?, ?)");
+            this.preparedStmt.setString(1, this.subjek_id);
+            this.preparedStmt.setString(2, this.jumlah2);
+            this.preparedStmt.setString(3, this.no_ic);
 
             // execute the preparedstatement
             this.preparedStmt.execute();
@@ -144,10 +155,11 @@ public class Penggal2DAO extends DBConnectionManager {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET subjek_id=?, jumlah2=? WHERE id=?");
-            this.preparedStmt.setInt(1, this.subjek_id);
-            this.preparedStmt.setFloat(2, this.jumlah2);
-            this.preparedStmt.setInt(3, this.id);
+            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET subjek_id=?, jumlah2=?, no_ic=? WHERE id=?");
+            this.preparedStmt.setString(1, this.subjek_id);
+            this.preparedStmt.setString(2, this.jumlah2);
+            this.preparedStmt.setString(3, this.no_ic);
+            this.preparedStmt.setInt(4, this.id);
 
             // execute the preparedstatement
             this.preparedStmt.executeUpdate();
@@ -181,32 +193,33 @@ public class Penggal2DAO extends DBConnectionManager {
     }
 
     //retrive single login from the database
-    public List<Penggal2DAO> findBySubjID(int subjek_id) {
+    public Penggal2DAO findByNRIC(String NRIC) {
         this.isNewRecord = false;
 
         try {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE subjek_id=?");
-            ps.setInt(1, subjek_id);
+            PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM " + this.tableName + " WHERE no_ic=? LIMIT 1");
+            ps.setString(1, NRIC);
             this.rs = ps.executeQuery();
 
-            List<Penggal2DAO> penggal2DAOs= new ArrayList<>();
+            Penggal2DAO penggal2DAO= null;
             while (rs.next()) {
-                penggal2DAOs.add(this.processRow(rs));
+                penggal2DAO= this.processRow(rs);
             }
 
             this.conn.close();
 //            return this.logins.get(id - 1);
 
             System.out.print("DATA SELECTED FROM " + this.tableName);
-            return penggal2DAOs;
+            return penggal2DAO;
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e); //or your exceptions
         }
 
     }
+
 
     //retrive list of logins from the database
     public List<Penggal2DAO> getAllKelas() {
@@ -230,11 +243,36 @@ public class Penggal2DAO extends DBConnectionManager {
         }
     }
 
+    public static List<Penggal2DAO> getAll(){  //class utk view
+        List<Penggal2DAO> list=new ArrayList<Penggal2DAO>();
+
+        try{
+            Connection con= Penggal2DAO.getConnection();
+            PreparedStatement ps=con.prepareStatement("select * from penggal2 WHERE subjek_id='1'");
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                Penggal2DAO e=new Penggal2DAO();
+                e.setSubjek_id(rs.getString(2));
+                e.setJumlah2(rs.getString(3));
+                e.setNo_ic(rs.getString(4));
+
+                list.add(e);
+            }
+            con.close();
+        }catch(Exception e){e.printStackTrace();}
+
+        return list;
+    }
+
     protected Penggal2DAO processRow(ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
-        this.subjek_id = rs.getInt("subjek_id");
-        this.jumlah2 = rs.getFloat("jumlah2");
+        this.subjek_id = rs.getString("subjek_id");
+        this.jumlah2 = rs.getString("jumlah1");
+        this.no_ic = rs.getString("no_ic");
+
         return this;
     }
+
+
 
 }

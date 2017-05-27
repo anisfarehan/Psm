@@ -38,17 +38,17 @@ public class AddAktivitiServlet extends HttpServlet {
         /*
         * convert object to JSON
         * */
-        Gson gson = new Gson();
-        String json = gson.toJson(aktivitiDAO);
+       //Gson gson = new Gson();
+       // String json = gson.toJson(aktivitiDAO);
 
 
         /*
         * response the JSON
         * */
-        response.setContentType("application/json");
+        /*response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().print(json);
-        response.getWriter().flush();
+        response.getWriter().flush();*/
 //        }
 
         /*response.setContentType("application/json");

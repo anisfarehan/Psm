@@ -72,7 +72,7 @@
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
 						<a class="dropdown-item" href="PenyeliaAddGuru.jsp">Daftar Guru</a>
-						<a class="dropdown-item" href="#">Senarai Guru</a>
+						<a class="dropdown-item" href="PenyeliaViewGuru.jsp">Senarai Guru</a>
 
 					</div>
 				</li>
@@ -94,7 +94,7 @@
 			<h1 class="my-4">S.K.Ayer Puteh</h1>
 			<div class="list-group">
 				<a href="guruviewaktiviti.jsp" class="list-group-item">Aktiviti</a>
-				<a href="guruakaun.jsp" class="list-group-item">Akaun</a>
+				<a href="#" class="list-group-item">Pelajar</a>
 			</div>
 
 		</div>

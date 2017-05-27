@@ -1,74 +1,169 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Sk.Ayer Puteh</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="content-language" content="" />
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<div id="page">
-    <div id="header">
-        <div id="menu">
-            <ul>
-                <li class="active"><a href="penyeliamain.jsp">Menu Utama</a></li>
-                <li><a href="#">Senarai Guru</a></li>
-                <li><a href="PenyeliaAddGuru.jsp">Kemasukkan Guru Baharu</a></li>
-                <li><a href="#">Rekod Akademik Pelajar</a></li>
-                <li><a href="PenyeliaAddAktiviti.jsp">Kemasukkan Aktiviti</a></li>
-                <li><a href="#">Akaun</a></li>
-                <li><a href="logout.jsp">Log Keluar</a></li>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Menu Utama Sk.Ayer Puteh</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+
+    <!-- Temporary navbar container fix -->
+    <style>
+        .navbar-toggler {
+            z-index: 1;
+        }
+
+        @media (max-width: 576px) {
+            nav > .container {
+                width: 100%;
+            }
+        }
+        /* Temporary fix for img-fluid sizing within the carousel */
+
+        .carousel-item.active,
+        .carousel-item-next,
+        .carousel-item-prev {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="container">
+        <a class="navbar-brand" href="#"><%=session.getAttribute("status")%> Farah Wahida Binti Muhammad Fakihi <%=session.getAttribute("number_ic")%></a>
+        <div class="collapse navbar-collapse" id="navbarExample">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Akaun<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="PenyeliaAddAktiviti.jsp">Aktiviti</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Akademik
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                        <a class="dropdown-item" href="gurupenggal1.jsp">Penggal 1</a>
+                        <a class="dropdown-item" href="gurupenggal2.jsp">Penggal 2</a>
+                        <a class="dropdown-item" href="gurufinal.jsp">Peperiksaan Akhir</a>
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Guru
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                        <a class="dropdown-item" href="PenyeliaAddGuru.jsp">Daftar Guru</a>
+                        <a class="dropdown-item" href="PenyeliaViewGuru.jsp">Senarai Guru</a>
+
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.jsp">Keluar</a>
+                </li>
             </ul>
-        </div><!-- menu -->
-    </div><!-- header -->
-    <img id="introimg" src="images/Picture1.gif" width="90" height="70" alt="" />
-    <h3><%=session.getAttribute("status")%> <%=session.getAttribute("nama")%> <%=session.getAttribute("number_ic")%></h3>
-    <div id="main">
-        <div id="sidebar">
-            <h2>Misi KPM</h2>
-            <div class="box">
-                <p>MEMBANGUNKAN SISTEM PENDIDIKAN BERKUALITI YANG BERTARAF DUNIA BAGI MEMPERKEMBANGKAN POTENSI INDIVIDU SEPENUHNYA DAN MEMENUHI ASPIRASI NEGARA MALAYSIA</p>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-3">
+
+            <h1 class="my-4">S.K.Ayer Puteh</h1>
+            <div class="list-group">
+                <a href="guruviewaktiviti.jsp" class="list-group-item">Aktiviti</a>
+                <a href="guruakaun.jsp" class="list-group-item">Akaun</a>
             </div>
-            <h2>Visi Sekolah</h2>
-            <div class="box1">
-                <p><div class="box1">
-                <p>MEMBANGUNKAN SISTEM PENDIDIKAN BERKUALITI YANG BERTARAF DUNIA BAGI MEMPERKEMBANGKAN POTENSI INDIVIDU SEPENUHNYA DAN MEMENUHI ASPIRASI NEGARA MALAYSIA</p>
-            </div></p>
+
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9">
+            <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+                               url="jdbc:mysql://localhost/ayerputeh"
+                               user="root"  password=""/>
+
+            <sql:query dataSource="${dbsource}" var="result">
+                SELECT * from aktiviti;
+
+            </sql:query>
+            <div id="content">
+                <header>Senarai Aktiviti</header>
+
+
+
+                <table border="0" width="90%">
+                    <tr><th>Id</th><th>Aktiviti</th><th>Tarikh</th><th>Huraian</th><th></th><th></th></tr>
+                    <c:forEach items="${result.rows}"  var="row">
+                    <tr><td>
+                        <label class="label"></label>
+
+                    </td>
+                        <td><label class="label">${param.id}</label></td>
+                        <td><label class="label">${row.aktivitinama}</label> </td>
+                        <td><label class="label">${row.tarikh}</label> </td>
+                        <td><label class="label">${row.huraian}</label> </td>
+                        <td><a href="Penyeliadetailedit.jsp?id=">Maklumat Lanjut</a></td>
+                        <td><a href="DeleteServlet?id=">Padam</a></td>
+                    </tr>
+                    </c:forEach>
+
+                </table>
+            </div><!-- post -->
         </div>
 
-    </div><!-- sidebar -->
-    <div id="content">
-        <header>Senarai Pelajar</header>
 
 
+            <!-- /.row -->
 
-        <table border="0" width="90%">
-            <tr><th>Id</th><th>Nama Pelajar</th><th>Kad Pengenalan</th><th>Kelas</th><th></th><th></th></tr>
+        </div>
+        <!-- /.col-lg-9 -->
 
-                <tr><td>
-                    <label class="label"><%=%></label>
+    </div>
+    <!-- /.row -->
 
-                </td>
-                    <td><label class="label"></label></td>
-                    <td><label class="label"></label> </td>
-                    <td><label class="label"></label> </td>
-                    <td><a href="Penyeliadetailedit.jsp?id=">Maklumat Lanjut</a></td>
-                    <td><a href="deleteuser.jsp?id=">Padam</a></td>
-                </tr>
-
-        </table>
-    </div><!-- post -->
-</div><!-- content -->
-<div class="clearing">&nbsp;</div>
-</div><!-- main -->
-<div id="footer">
-    <p>&copy;SK.Ayer Puteh. All rights reserved.</p>
 </div>
-</div><!-- page -->
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-inverse">
+    <div class="container">
+        <p class="m-0 text-center text-white">Hak Cipta Terpelihara &copy; S.K.Ayer Puteh 2017</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/tether/tether.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

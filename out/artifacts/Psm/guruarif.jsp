@@ -1,7 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.ayerputeh.Model.PelajarDAO.PelajarDAO" %>
-<%@ page import="com.ayerputeh.Model.Penggal1DAO.Penggal1DAO" %>
+
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +43,13 @@
             display: block;
         }
     </style>
+    <script>
+        function confirmGo(m,u) {
+            if ( confirm(m) ) {
+                window.location = u;
+            }
+        }
+    </script>
 
 </head>
 
@@ -110,34 +117,28 @@
         <!-- /.col-lg-3 -->
 
         <div class="col-lg-9">
-            <%
-                /* List<Emp> list= EmpDao.getAllEmployees();
-                 request.setAttribute("list",list);*/
+            <sql:setDataSource var="dbsource" driver="com.mysql.jdbc.Driver"
+                               url="jdbc:mysql://localhost/ayerputeh"
+                               user="root"  password=""/>
 
-//       List<PelajarDAO> list=PelajarDAO.getAll();
-                //     request.setAttribute("list",list);
-                List<Penggal1DAO> list=Penggal1DAO.getAll();
-                request.setAttribute("list",list);
+            <sql:query dataSource="${dbsource}" var="result">
+                SELECT * from penggal1;
 
+            </sql:query>
 
-            %>
-            <form action="UpdateMelayuServlet" class="sky-form" method="post">
+            <form action="" class="sky-form" method="post">
                 <header>Kelas : Arif</header>
 
 
                 <fieldset>
                     <table border="0" width="90%">
                         <tr><th>Id</th><th>Nama Pelajar</th><th>Kad Pengenalan</th><th>Kelas</th><th></th><th></th></tr>
-                        <c:forEach items="${list}"  var="e">
-                           <tr><td>
-                                <label class="label"></label>
+                        <c:forEach items="${result.rows}"  var="row">
+                               <td><input class="text" type="hidden" value="${param.id}"></td>
+                               <td><label class="text" name="pelajarnama" >${row.subjek_id}</label></td>
+                               <td><label class="text" name="no_ic" value="">${row.no_ic}</label></td>
 
-                            </td>
-                               <td><input class="text" type="hidden" name="pelajar_ids[]" value="${e.getId()}"></td>
-                               <td><input class="text" name="subjek_id" value="${e.getSubjek_id()}"></td>
-                               <td><input class="text" name="no_ic" value="${e.getNo_ic()}"></td>
-                               <td><input class="text" type="number" name="jumlah1" value="${e.getJumlah1()}"></td>
-                               <td></td>
+                               <td><a href="guruarif2.jsp?id=<c:out value="${row.id}"/>">Ok</a></td>
                             </tr>
                         </c:forEach>
                         </table>

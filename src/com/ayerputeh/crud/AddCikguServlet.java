@@ -37,19 +37,8 @@ public class AddCikguServlet extends HttpServlet {
         loginDAO.guru = "guru";
         loginDAO.penyelia = "";
 
-        SubjekDAO subjekDAO= new SubjekDAO();
-        subjekDAO.subjeknama = request.getParameter("subjek_id");
-        subjekDAO.guru_id =request.getParameter("no_ic");
-        subjekDAO.kelasid = request.getParameter("kelas_id");
-
-        KelasDAO kelasDAO= new KelasDAO();
-        kelasDAO.kelasnama = request.getParameter("kelas_id");
-        kelasDAO.guru_id = request.getParameter("no_ic");
-
         guruDAO.create();
         loginDAO.create();
-        subjekDAO.create();
-        kelasDAO.create();
 
         request.setAttribute("alertMsg", "Pendaftaran berjaya");
         RequestDispatcher rd=request.getRequestDispatcher("./PenyeliaAddGuru1.jsp");
