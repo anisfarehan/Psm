@@ -94,7 +94,7 @@
 			<h1 class="my-4">S.K.Ayer Puteh</h1>
 			<div class="list-group">
 				<a href="guruviewaktiviti.jsp" class="list-group-item">Aktiviti</a>
-				<a href="guruakaun.jsp" class="list-group-item">Akaun</a>
+				<a href="#" class="list-group-item">Pelajar</a>
 			</div>
 
 		</div>

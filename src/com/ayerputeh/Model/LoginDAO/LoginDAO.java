@@ -20,7 +20,7 @@ public class LoginDAO extends DBConnectionManager {
      * TABLE COLUMN NAME
      *******************************/
     private  int id;
-    public String number_ic, password, status, nama, guru, penyelia;
+    public String number_ic, password, gcm_registration_id, status, nama, guru, penyelia;
 
     /******************************
      * DATABASE VARIABLES
@@ -65,6 +65,10 @@ public class LoginDAO extends DBConnectionManager {
 
     public String getStatus() {
         return this.status;
+    }
+
+    public String getGCMRegistrationID() {
+        return this.gcm_registration_id;
     }
 
 
@@ -154,11 +158,12 @@ public class LoginDAO extends DBConnectionManager {
             if (this.conn.isClosed())
                 this.conn = getConnection();
 
-            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET number_ic=?, password=?, status=? WHERE id=?");
+            this.preparedStmt = this.conn.prepareStatement("UPDATE " + this.tableName + " SET number_ic=?, password=?, gcm_registration_id=?, status=? WHERE id=?");
             this.preparedStmt.setString(1, this.number_ic);
             this.preparedStmt.setString(2, this.password);
-            this.preparedStmt.setString(3, this.status);
-            this.preparedStmt.setInt(4, this.id);
+            this.preparedStmt.setString(3, this.gcm_registration_id);
+            this.preparedStmt.setString(4, this.status);
+            this.preparedStmt.setInt(5, this.id);
 
             // execute the preparedstatement
             this.preparedStmt.executeUpdate();
@@ -245,7 +250,11 @@ public class LoginDAO extends DBConnectionManager {
         this.id = rs.getInt("id");
         this.number_ic = rs.getString("number_ic");
         this.password = rs.getString("password");
+        this.gcm_registration_id = rs.getString("gcm_registration_id");
         this.status = rs.getString("status");
+        this.nama = rs.getString("nama");
+        this.guru = rs.getString("guru");
+        this.penyelia = rs.getString("penyelia");
         return this;
     }
 }
